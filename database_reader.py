@@ -16,12 +16,12 @@ class ResultsFromAna:
 class DATABASE:
     def __new__(cls, name, path=''):
         return pd.read_csv(path+name, header=0,
-            sep='\s+')
+            sep='\s+', keep_default_na=False)
 
-class Database(object):
-    def __init__(self):
-        self.levels = DATABASE('DATABASE_LVLS')
-        self.transitions = DATABASE('DATABASE_TRANS')
+class Database():
+    def __init__(self, lvlFileName, transitionsFileName):
+        self.levels = DATABASE(lvlFileName)
+        self.transitions = DATABASE(transitionsFileName)
 
     def slice(self, gamma_start_lvl, gamma_end_lvl):
 
@@ -33,6 +33,4 @@ class Database(object):
 # dat = Database()
 # #print(dat[dat['from_lvl']==517.68])
 # print(dat.transitions)
-
-
 

@@ -1,0 +1,398 @@
+109CD    109IN EC DECAY                1970RI06
+109CD C  Compiled (unevaluated) dataset from 1970RI06:
+109CD2C  1970RI06,1988VI03
+109CD C  Suresh Kumar, Jun Chen and Filip G. Kondev
+109CD C  1988VI03: {+109}In was made with {+111}Cd(p,3n) by irradiating 10      
+109CD2C  mg/cm{+2} cadmium foil (95% enriched) with 30 MeV protons. |g rays were
+109CD3C  detected with Ge(Li) and NaI(Tl) detectors. Measured E|g, I|g,         
+109CD4C  |g|g-coin. Deduced level scheme, |g-ray branching ratios.
+109CD C  1972CH56: {+109}In activities were produced by bombarding 68.6%        
+109CD2C  enriched {+108}Cd with proton beams from the Calcutta cyclotron. |g    
+109CD3C  rays were detected with Ge(Li) and NaI(Tl) detectors. Measured E|g,    
+109CD4C  I|g, |g|g-coin. Deduced level scheme, |g-ray branching ratios.
+109CD C  1971BA08: {+109}In sources were prepared by bombarding 88.4% enriched  
+109CD2C  {+106}Cd metal with 19-Mev |a particles from the Yale Heavy-Ion        
+109CD3C  Accelerator. |g rays were detected with two Ge(Li) detectors. Measured 
+109CD4C  E|g, I|g, |g|g-coin. Deduced level scheme, |g-ray branching ratios.
+109CD C  1970RI06: {+109}In was made by irradiating natural Cadmium target with 
+109CD2C  28 MeV deuteron and 40 MeV proton. |g rays were detected with Ge(Li)   
+109CD3C  and NaI(Tl) detectors. Measured E|g, I|g, |g|g-coin. Deduced level     
+109CD4C  scheme, |g-ray branching ratios.
+109CD C  1969DI16: {+109}In sources were produced using the (|a,2n) reaction of 
+109CD2C  25 Mev |a particles on natural silver or enriched {+107}Ag targets. |g 
+109CD3C  rays were detected with two Ge(Li) detectors (FWHM=5-10 keV at 511     
+109CD4C  keV). Measured E|g, I|g, |g|g-coin. Deduced levels, |g-ray branching   
+109CD5C  ratios.
+109CD C  Other measurements: 1971Ba06, 1971Ba08, 1966He11, 1962No06, 1956Pe56,  
+109CD2C  1951Mc11, 1949Ma20.
+109CD C  The decay scheme is from 1970RI06 with corrections derived from        
+109CD2C  |g|g-coin in 1988VI03.
+109CD C  The total average radiation energy released by 109IN EC decay is 1111  
+109CD2C  keV {i4} (calculated by evaluators using the computer program RADLST). 
+109CD3C  This value agrees well with Q(|b{+-})=1113.3 keV {i14} (2012Wa38) and  
+109CD4C  shows the completeness of decay scheme.
+109CD CG E,RI$Weighted average of values from 1969DI16, 1970RI06, 1971BA08,     
+109CD2CG 1972CH56, and 1988VI03, unless otherwise noted. Values of I|g are      
+109CD3CG normalized to I|g(203|g)=100.
+109CD CG E(A),RI(A)$From 1970RI06 only.
+109CD CG E(B),RI(B)$From 1988VI03 only.
+109CD CG E(C),RI(C)$From 1969DI16 only.
+109CD CG M$From Adopted Gammas, unless otherwise noted. ce data in this dataset 
+109CD2CG are from 1956Pe56 and given in comments.
+109CD CE IE$Deduced from I(|g+ce) intensity balances by assuming no |b{+-}      
+109CD2CE feeding g.s.
+109CD CL E$From a least-squares fit to |g-ray energies.
+109CD CL J,T$From Adopted Levels, unless otherwise noted.
+109CD  G 74.8        3       AP                                             A  ?
+109CD  G 84.1        4       AP                                             A  ?
+109CD  G 174.7       0.2     AP                                             A   
+109CD  G 546.1     4 0.05    3                                                  
+109CD CG E$weighted average of 546.0 6 (1988VI03) and 546.1 5 (1971BA08).       
+109CD2CG RI$from 1988VI03. Other: 0.7 (1971BA08)
+109CD  G 580.9     5 0.11    3                                                  
+109CD CG E,RI$from 1970RI06. 1969DI16 placed a 578 1 transition of I|g=0.20 3   
+109CD2CG from the 1773 level
+109CD  G 599.6     5 0.3     LT                                                 
+109CD CG E$weighted average of 599.3 5 (1970RI06) and 600.3 7 (1972CH56) RI$from
+109CD2CG 1972CH56. I|g<0.3 from 1970RI06
+109CD  G 692.3     3 0.25    2                                                  
+109CD CG E$weighted average of 691.8 4 (1970RI06), 692.3 5 (1971BA08), 692.6 7  
+109CD2CG (1972CH56) and 692.9 5 (1980VI03) RI$weighted average of 0.26 3        
+109CD3CG (1970RI06), 0.24 2 (1971BA08), 0.35 23 (1972CH56) and 0.23 4 (1980VI03)
+109CD  G 704.4     4 0.10    2                                                  
+109CD CG E$weighted average of 704.0 6 (1970RI06) and 704.6 5 (1971BA08) RI$from
+109CD2CG 1971BA08. I|g<0.1 in 1970RI06
+109CD  G 843.0     6 0.10    2                                                  
+109CD CG E$weighted average of 842.5 5 (1971BA08) and 843.7 6 (1988VI03)        
+109CD2CG RI$weighted average of 0.10 2 (1971BA08) and 0.12 4 (1988VI03)
+109CD  G 969.5     3 0.12    7                                              B   
+109CD  G 1535      2 0.18    2                                              C  ?
+109CD  G 1620      1 2.9     2                                              C  ?
+109CD  L 0           5/2+              461.5 D   6                              
+109CD CL T$from Adopted Levels
+109CD  L 59.6      4 1/2+                                                       
+109CD  G 59.6      2 0.25    6 E2                      9.49                     
+109CD CG E$weighted average of 59.9 5 (1970RI06), 59.5 3 (1971BA08), 59.6 5     
+109CD2CG (1972CH56) and 60 1 (1969DI16) RI$from 1969DI16. K/(L+M)=0.85 {i8}     
+109CD3CG (1956PE56) M$ECC=13 3 (1956PE56)
+109CD  L 203.30    157/2+                                                       
+109CD  G 203.4     1 100       (M1)                    0.066                    
+109CD CG E$weighted average of 204.6 4 (1969DI16), 203.5 2 (1970RI06), 203.3 3  
+109CD2CG (1971BA08), 203.6 5 (1972CH56) and 203.3 1 (1988VI03) M$assumed to be  
+109CD3CG pure M1 for normalization purposes. ECC=0.07 1 from K/(L+M)=7.6 {i4}   
+109CD4CG (1956Pe56)
+109CD  L 347.5     2 5/2+                                                       
+109CD  G 288.1     1 2.10    7 E2                      0.0371                   
+109CD CG E$weighted average of 289.1 4 (1969DI16), 288.4 8 (1970RI06), 287.7 3  
+109CD2CG (1971BA08), 287.8 5 (1972CH56), and 288.1 1 (1988VI03). RI$weighted    
+109CD3CG average of 2.29 18 (1969DI16), 2.4 2 (1970RI06), 2.10 11 (1971BA08),   
+109CD4CG 1.98 23 (1972CH56), and 2.0 1 (1988VI03). M$ECC=0.04 1 from K/(L+M)=5.0
+109CD5CG (1956Pe56)
+109CD  G 347.5     1 2.72    10M1,E2                                            
+109CD CG E$weighted average of 348.3 5 (1969DI16), 347.5 3 (1970RI06), 347.4 3  
+109CD2CG (1971BA08), 347.5 5 (1972CH56), and 347.5 1 (1988VI03). RI$weighted    
+109CD3CG average of 2.54 16 (1969DI16), 3.0 2 (1970RI06), 2.7 15 (1971BA08), 2.5
+109CD4CG 3 (1972CH56), and 2.8 2 (1988VI03). M$ECC=0.020 8 from K/(L+M)=5.1 {i5}
+109CD5CG (1956Pe56)
+109CD  L 426.30    183/2+,5/2+                                                  
+109CD  G 223.0     1 0.16    5                                                  
+109CD CG E$weighted average of 223.1 2 (1970RI06), 223.0 3 (1971BA08), and 223.0
+109CD2CG 1 (1988VI03). RI$weighted average of 0.10 2 (1970RI06), 0.20 3         
+109CD3CG (1971BA08), and 0.21 2 (1988VI03).
+109CD  G 426.3     1 5.46    16M1,E2                                            
+109CD CG E$weighted average of 427.0 5 (1969DI16), 426.2 3 (1970RI06), 426.2 3  
+109CD2CG (1971BA08), 426.4 5 (1972CH56), and 426.3 1 (1988VI03). RI$weighted    
+109CD3CG average of 4.9 3 (1969DI16), 5.75 20 (1970RI06), 5.3 3 (1971BA08), 5.7 
+109CD4CG 4 (1972CH56), and 5.4 3 (1988VI03). M$ECC=0.014 5 from K/(L+M)=8 {i1}  
+109CD5CG (1956Pe56)
+109CD  L 461.0     9 11/2-                                                      
+109CD  G 259.6     1 0.07    2 M2                      0.1704                   
+109CD CG E$weighted average of 259 2 (1970RI06), 259.1 3 (1971BA08), and 259.7 1
+109CD2CG (1988VI03). RI$weighted average of 0.08 1 (1971BA08) and 0.04 2        
+109CD3CG (1988VI03). M$EKC=0.12 2 from ratio                                    
+109CD4CG |a(K)exp(259.5|g)/|a(K)exp(203.5|g)=2.06 {i23} (1969BE37).
+109CD  L 623.8     2 7/2+,9/2+                                                  
+109CD  G 420.6     1 1.12    10                                                 
+109CD CG E$weighted average of 420.5 4 (1970RI06), 420.5 3 (1971BA08), 420.9 5  
+109CD2CG (1972CH56), and 420.6 1 (1988VI03). RI$weighted average of 1.35 10     
+109CD3CG (1970RI06), 1.00 6 (1971BA08), 1.63 19 (1972CH56), and 1.10 8          
+109CD4CG (1988VI03).
+109CD  G 623.8     1 7.6     3 M1,E2                                            
+109CD CG E$weighted average of 623.0 5 (1969DI16), 623.5 4 (1970RI06), 623.8 5  
+109CD2CG (1971BA08), 623.7 10 (1972CH56), and 623.8 1 (1988VI03). RI$weighted   
+109CD3CG average of 7.9 8 (1969DI16), 8.2 4 (1970RI06), 7.1 6 (1971BA08), 7.3 6 
+109CD4CG (1972CH56), and 6.9 6 (1988VI03). M$ECC=0.0032 15 (1956Pe56)
+109CD  L 673.2     2 5/2+                                                       
+109CD  G 326.3     2 0.73    3                                                  
+109CD CG E$weighted average of 326.6 5 (1970RI06), 326.3 3 (1971BA08), and 326.3
+109CD2CG 2 (1988VI03). RI$weighted average of 0.73 4 (1971BA08) and 0.72 5      
+109CD3CG (1988VI03). Others: 1.2 1 for the 324.3+326.6 doublet (1970RI06), 1.39 
+109CD4CG 28 (1972CH56) for the doublet, 1.24 14 (1969DI16) for the doublet.
+109CD  G 613.6     1 3.0     2                                                  
+109CD CG E$weighted average of 614 1 (1969DI16), 613.6 4 (1970RI06), 614.0 5    
+109CD2CG (1971BA08), and 613.6 1 (1988VI03). RI$weighted average of 2.8 4       
+109CD3CG (1969DI16), 3.4 3 (1970RI06), 2.8 4 (1971BA08), and 2.8 3 (1988VI03).
+109CD  L 721.7     3 5/2+                                                       
+109CD  G 518.2                                                                  
+109CD CG E$seen in coincidence with 203|g in 1971BA08, also in (p,ng) in        
+109CD2CG 1988VI03
+109CD  G 721.8     1 0.99    6                                                  
+109CD CG E$weighted average of 721.0 5 (1969DI16), 721.5 4 (1970RI06), 721.5 5  
+109CD2CG (1971BA08), 721.9 10 (1972CH56), and 721.8 1 (1988VI03). RI$weighted   
+109CD3CG average of 0.93 8 (1969DI16), 1.22 10 (1970RI06), 0.91 5 (1971BA08),   
+109CD4CG 1.4 3 (1972CH56), and 1.05 8 (1988VI03).
+109CD  L 822.6     2 3/2+,5/2+                                                  
+109CD  G 618.5     1 2.6     2                                                  
+109CD CG E$weighted average of 619.0 5 (1970RI06), 619.3 5 (1971BA08), 618.8 10 
+109CD2CG (1972CH56), and 618.4 1 (1988VI03). RI$weighted average of 2.4 3       
+109CD3CG (1970RI06), 2.6 4 (1971BA08), 3.0 3 (1972CH56), and 2.3 3 (1988VI03).
+109CD  G 823.0     1 1.75    6                                                  
+109CD CG E$weighted average of 822 1 (1969DI16), 822.5 5 (1970RI06), 822.5 5    
+109CD2CG (1971BA08), 823.1 7 (1972CH56), and 821.9 1 (1988VI03). RI$weighted    
+109CD3CG average of 1.68 15 (1969DI16), 1.9 1 (1970RI06), 1.74 8 (1971BA08), 2.1
+109CD4CG 3 (1972CH56), and 1.6 1 (1988VI03).
+109CD  L 891.1     3 5/2+                                                       
+109CD  G 831.7     1 0.34    3                                                  
+109CD CG E$weighted average of 832 1 (1969DI16), 832.2 10 (1970RI06), 831.5 5   
+109CD2CG (1971BA08), 831.8 10 (1972CH56), and 831.7 1 (1988VI03). RI$weighted   
+109CD3CG average of 0.34 5 (1970RI06) and 0.34 3 (1971BA08). Others: 0.18 2     
+109CD4CG (1969DI16), 0.24 2 (1988VI03), 0.8 3 (1972CH56)
+109CD  G 891.2     1 0.31    3                                                  
+109CD CG E$weighted average of 890 1 (1969DI16), 890.5 6 (1970RI06), 890.8 5    
+109CD2CG (1971BA08), and 891.2 1 (1988VI03). RI$weighted average of 0.29 3      
+109CD3CG (1969DI16), 0.38 7 (1970RI06), 0.28 3 (1971BA08), and 0.35 3           
+109CD4CG (1988VI03).
+109CD  L 997.3     3 9/2+                                                       
+109CD  G 324.4     2 0.51    2                                                  
+109CD CG E$weighted average of 324.3 5 (1970RI06), 324.4 3 (1971BA08), 324.7 5  
+109CD2CG (1972CH56), and 324.4 3 (1988VI03). Other: 325.3 5 from 1969Di16.      
+109CD3CG RI$weighted average of 0.50 3 (1971BA08) and and 0.51 3 (1988VI03).    
+109CD4CG Others: 1.2 1 for the 324.3+326.6 doublet (1970RI06), 1.39 28          
+109CD5CG (1972CH56) for the doublet, 1.24 14 (1969DI16) for the doublet.
+109CD  G 570.4     5 0.09    4                                              A   
+109CD  G 650.0     1 4.0     2                                                  
+109CD CG E$weighted average of 651.0 5 (1969DI16), 649.8 4 (1970RI06), 650.1 5  
+109CD2CG (1971BA08), 650.1 10 (1972CH56), and 650.0 1 (1988VI03). RI$weighted   
+109CD3CG average of 4.1 3 (1970RI06), 3.8 4 (1971BA08), 4.4 4 (1972CH56), and   
+109CD4CG 3.7 3 (1988VI03). Other: 5.9 4 (1969DI16)
+109CD  G 794.0     3 0.80    8                                                  
+109CD CG E$weighted average of 793.9 4 (1970RI06), 794.0 5 (1971BA08), and 794.7
+109CD2CG 10 (1972CH56). Other: 792.5 5 (1969DI16) RI$weighted average of 0.8 2  
+109CD3CG (1970RI06), 0.74 6 (1971BA08), 0.99 13 (1969DI16), and 1.4 3           
+109CD4CG (1972CH56).
+109CD  G 998.5     3 0.87    5                                              &   
+109CD CG E$weighted average of 998 1 (1969DI16), 998.5 6 (1970RI06), 998.7 5    
+109CD2CG (1971BA08), 998.2 10 (1972CH56), and 998.5 4 (1988VI03). RI$weighted   
+109CD3CG average of 0.99 13 (1969DI16), 0.97 5 (1970RI06), 0.77 5 (1971BA08),   
+109CD4CG 1.1 3 (1972CH56), and 0.8 1 (1988VI03).
+109CD  L 1066.1      (11/2+)                                                    
+109CD CL E$this level is derived from (203|g)(862|g)-coin in (p,n|g) in 1988Vi03
+109CD  G 862.7     1 0.26    2                                                  
+109CD CG E$weighted average of 864 1 (1969DI16), 862.2 6 (1970RI06), 863.2 5    
+109CD2CG (1971BA08), 863.2 10 (1972CH56), and 862.7 1 (1988VI03). E$this        
+109CD3CG placement is proposed by 1988VI03 based on observed 203|g-862|g-coin in
+109CD4CG (p,n|g); 1970RI06 placed this transition from the 1861 level.          
+109CD5CG RI$weighted average of 0.15 12 (1969DI16), 0.23 7 (1970RI06), 0.24 3   
+109CD6CG (1971BA08), 0.4 3 (1972CH56), and 0.29 3 (1988VI03).
+109CD  L 1106.0    4 7/2,9/2+                                                   
+109CD  G 482.3     2 0.12    2                                                  
+109CD CG E$weighted average of 482.2 4 (1970RI06), 482.6 3 (1971BA08), and 482.2
+109CD2CG 2 (1988VI03). RI$weighted average of 0.17 3 (1970RI06), 0.11 2         
+109CD3CG (1971BA08), and 0.11 2 (1988VI03).
+109CD  G 901.7     2 0.50    3                                              &   
+109CD CG E$weighted average of 901 1 (1969DI16), 900.7 6 (1970RI06), 901.6 5    
+109CD2CG (1971BA08), 901.9 10 (1972CH56) and 901.8 2 (1988VI03). Also placed as 
+109CD3CG a transition from E=1622 level. RI$weighted average of 0.44 5          
+109CD4CG (1969DI16), 0.64 10 (1970RI06), 0.50 4 (1971BA08), 0.7 3 (1972CH56) and
+109CD5CG 0.6 1 (1988VI03).
+109CD  G 1105.9    1 0.39    2                                                  
+109CD CG E$weighted average of 1106.0 5 (1969DI16), 1106.2 8 (1970RI06), 1106.0 
+109CD2CG 5 (1971BA08), 1105.9 10 (1972CH56), and 1105.9 1 (1988VI03).           
+109CD3CG RI$weighted average of 0.43 4 (1970RI06), 0.38 4 (1971BA08), 0.4 3     
+109CD4CG (1972CH56), and 0.36 4 (1988VI03). Other:  0.74 7 (1969DI16)
+109CD  L 1121                                                                  ?
+109CD CL E$this level is reported only by 1988VI03
+109CD  G 1061.5    2 0.05    2                                              B  ?
+109CD  L 1133.6    6 7/2+                                                       
+109CD  G 929.5     2 0.30    4                                                  
+109CD CG E$weighted average of 930.3 5 (1970RI06), 930.4 5 (1971BA08), 931.3 10 
+109CD2CG (1972CH56), and 929.4 1 (1988VI03). 1988VI03 placed this transition    
+109CD3CG from the 930 level in (p,n|g) RI$weighted average of 0.4 1 (1970RI06), 
+109CD4CG 0.27 5 (1971BA08), and 0.3 1 (1988VI03). Other: 1.0 3 (1972CH56)
+109CD  L 1173.2                                                                ?
+109CD CL E$reported only in 1988VI03
+109CD  G 549.4     2 0.02    1                                              B  ?
+109CD  L 1219.3                                                                ?
+109CD CL E$this level is reported only by 1988VI03
+109CD  G 871.8     3 0.18    2                                              B   
+109CD  L 1352.0    2 7/2+,9/2+                                                  
+109CD  G 461.4     4 0.14    2                                              A   
+109CD  G 529.9     2 0.75    5                                                  
+109CD CG E$weighted average of 530.8 5 (1969DI16), 529.3 4 (1970RI06), 529.7 5  
+109CD2CG (1971BA08), 529.7 7 (1972CH56), and 530.1 3 (1988VI03). RI$weighted    
+109CD3CG average of 0.93 8 (1969DI16), 0.80 4 (1970RI06), 0.69 5 (1971BA08),    
+109CD4CG 1.02 19 (1972CH56), and 0.65 5 (1988VI03).
+109CD  G 630.3     3 0.10    1                                                  
+109CD CG E$weighted average of 629.9 6 (1970RI06), 630.8 5 (1971BA08), and 630.2
+109CD2CG 4 (1988VI03). RI$weighted average of 0.10 3 (1970RI06), 0.10 1         
+109CD3CG (1971BA08), and 0.10 2 (1988VI03).
+109CD  G 678.6     2 1.12    7                                                  
+109CD CG E$weighted average of 677.5 5 (1969DI16), 678.8 4 (1970RI06), 678.9 5  
+109CD2CG (1971BA08), 679.0 7 (1972CH56), and 678.8 3 (1988VI03). RI$weighted    
+109CD3CG average of 0.93 8 (1969DI16), 1.35 10 (1970RI06), 1.12 7 (1971BA08),   
+109CD4CG 1.19 24 (1972CH56), and 1.2 1 (1988VI03).
+109CD  G 728.1     3 0.36    2                                                  
+109CD CG E$weighted average of 727.4 5 (1970RI06), 728.2 5 (1971BA08), 728.8 10 
+109CD2CG (1972CH56), and 728.3 4 (1988VI03). RI$weighted average of 0.35 5      
+109CD3CG (1970RI06), 0.34 3 (1971BA08), 0.56 18 (1972CH56), and 0.38 3          
+109CD4CG (1988VI03).
+109CD  G 925.6     3 0.96    7                                                  
+109CD CG E$weighted average of 925.8 5 (1970RI06), 925.8 5 (1971BA08), 926.4 10 
+109CD2CG (1972CH56), and 925.3 4 (1988VI03). RI$weighted average of 1.2 2       
+109CD3CG (1970RI06), 1.00 7 (1971BA08), 1.2 3 (1972CH56), and 0.8 1 (1988VI03).
+109CD  G 1004.8    3 0.30    2                                                  
+109CD CG E$weighted average of 1004.1 7 (1970RI06), 1005.0 5 (1971BA08), 1004.9 
+109CD2CG 10 (1972CH56), and 1005.0 6 (1988VI03). RI$weighted average of 0.30 3  
+109CD3CG (1970RI06), 0.30 3 (1971BA08), 0.35 20 (1972CH56), and 0.25 6          
+109CD4CG (1988VI03).
+109CD  G 1148.53   176.3     2                                                  
+109CD CG E$weighted average of 1148.0 5 (1969DI16), 1149.1 6 (1970RI06), 1148.8 
+109CD2CG 5 (1971BA08), 1148.6 10 (1972CH56), and 1148.5 2 (1988VI03).           
+109CD3CG RI$weighted average of 6.2 4 (1969DI16), 5.9 5 (1970RI06), 7.0 4       
+109CD4CG (1971BA08), 6.4 6 (1972CH56), and 6.0 4 (1988VI03).
+109CD  G 1352.3    1 0.96    4                                                  
+109CD CG E$weighted average of 1352.3 7 (1970RI06), 1352.2 5 (1971BA08), 1351.9 
+109CD2CG 15 (1972CH56), and 1352.3 1 (1988VI03). RI$weighted average of 1.0 1   
+109CD3CG (1970RI06), 0.99 6 (1971BA08), 1.2 3 (1972CH56), and 0.86 8 (1988VI03).
+109CD  L 1388.3                                                                 
+109CD CL E$this level is derived from 203|g-1185|g-coin in (p,n|g) (1988Vi03),  
+109CD2CL not reported by 1970RI06
+109CD  G 962.2     2 0.03    2                                                  
+109CD CG E$weighted average of 962.2 3 (1988VI03) and 962.6 7 (1970RI06). Placed
+109CD2CG by 1988VI03, this |g was unplaced in 1970Ri06. 1988VI03 also also      
+109CD3CG placed this |g from the 1425 level in (p,n|g) RI$from 1988VI03. Other: 
+109CD4CG 0.13 3 (1970RI06).
+109CD  G 1186.8    100.4     LT                                             A   
+109CD CG E$seen by 1970RI06. This |g was not seen by 1988VI03 in 109IN EC decay 
+109CD2CG but seen in their (P,NG) measurements. Placed by evaluators based on   
+109CD3CG (P,NG)
+109CD  G 1388.8    3 0.08    2                                                  
+109CD CG E$weighted average of 1388.2 10 (1970RI06), 1389.9 5 (1971BA08), and   
+109CD2CG 1388.6 2 (1988VI03). Placed by 1988VI03, but 1970RI06 placed this |g   
+109CD3CG from a level at 1847 RI$weighted average of 0.05 2 (1970RI06), 0.11 2  
+109CD4CG (1971BA08), and 0.07 4 (1988VI03).
+109CD  L 1429.8    10(7/2,9/2+)                                                ?
+109CD CL E$not reported by 1988Vi03
+109CD  G 1430.1    4 0.08    4                                                  
+109CD CG E$weighted average of 1429.8 10 (1970RI06) and 1430.2 4 (1988VI03).    
+109CD2CG Seen by 1988VI03 in both 109IN EC decay and (P,NG) but 1988VI03 placed 
+109CD3CG this |g from the 1633 level in (P,NG), which is not populated in 109IN 
+109CD4CG EC decay. RI$unweighted average of 0.12 3 (1970RI06) and 0.04 2        
+109CD5CG (1988VI03).
+109CD  L 1475.7    3 7/2+,9/2+                                                  
+109CD  G 584.3     2 0.30    5                                                  
+109CD CG E$weighted average of 583.8 5 (1970RI06), 584.2 5 (1971BA08), and 584.6
+109CD2CG 3 (1988VI03). RI$unweighted average of 0.40 3 (1970RI06), 0.24 2       
+109CD3CG (1971BA08), and 0.25 2 (1988VI03).
+109CD  G 653.4     2 2.2     2                                                  
+109CD CG E$weighted average of 652.9 4 (1970RI06), 653.4 5 (1971BA08), 653.5 10 
+109CD2CG (1972CH56), and 653.6 3 (1988VI03). RI$unweighted average of 2.6 2     
+109CD3CG (1970RI06), 1.9 4 (1971BA08), 2.3 3 (1972CH56), and 1.8 1 (1988VI03).
+109CD  G 753.8     4 0.51    3                                                  
+109CD CG E$weighted average of 752.5 5 (1969DI16), 753.9 6 (1970RI06), 754.4 5  
+109CD2CG (1971BA08), 754.6 7 (1972CH56), and 754.0 6 (1988VI03). RI$weighted    
+109CD3CG average of 0.41 6 (1969DI16), 0.6 1 (1970RI06), 0.55 4 (1971BA08), 0.6 
+109CD4CG 3 (1972CH56), and 0.49 4 (1988VI03).
+109CD  G 851.8     3 0.19    1                                                  
+109CD CG E$weighted average of 851 1 (1969DI16), 852.3 5 (1970RI06), 851.6 5    
+109CD2CG (1971BA08), 851.5 10 (1972CH56), and 851.9 5 (1988VI03). RI$weighted   
+109CD3CG average of 0.18 2 (1969DI16), 0.35 10 (1970RI06), 0.23 4 (1971BA08),   
+109CD4CG 0.4 3 (1972CH56), and 0.19 2 (1988VI03).
+109CD  G 1049.4    2 1.58    5                                                  
+109CD CG E$weighted average of 1048.5 5 (1969DI16), 1049.7 6 (1970RI06), 1049.8 
+109CD2CG 5 (1971BA08), 1049.6 10 (1972CH56), and 1049.5 3 (1988VI03).           
+109CD3CG RI$weighted average of 1.76 18 (1969DI16), 1.58 8 (1970RI06), 1.5 1    
+109CD4CG (1971BA08), 1.5 3 (1972CH56), and 1.6 1 (1988VI03).
+109CD  G 1272.6    2 0.77    3                                                  
+109CD CG E$weighted average of 1272.9 7 (1970RI06), 1272.6 5 (1971BA08), 1272 1 
+109CD2CG (1972CH56), 1271 2 (1969DI16) and 1272.6 3 (1988VI03). 1972CH56 also   
+109CD3CG placed this |g from a level at 1272 RI$weighted average of 0.80 5      
+109CD4CG (1970RI06), 0.77 5 (1971BA08), 0.8 3 (1972CH56), 0.81 8 (1969DI16) and 
+109CD5CG 0.72 6 (1988VI03).
+109CD  G 1475.6    2 0.66    4                                                  
+109CD CG E$weighted average of 1473 1 (1969DI16), 1475.8 7 (1970RI06), 1475.6 5 
+109CD2CG (1971BA08), 1475.6 10 (1972CH56), and 1475.7 2 (1988VI03). RI$weighted 
+109CD3CG average of 0.74 15 (1969DI16), 0.6 1 (1970RI06), 0.69 5 (1971BA08),    
+109CD4CG 0.74 22 (1972CH56), and 0.61 7 (1988VI03).
+109CD  L 1539.3    9 7/2,9/2+                                                   
+109CD  G 542       2 0.10    1                                              A   
+109CD  G 1539.4    2 0.16    2                                                  
+109CD CG E$weighted average of 1539.3 10 (1970RI06), 1539.8 5 (1971BA08), 1539.0
+109CD2CG 15 (1972CH56), and 1539.3 2 (1988VI03). RI$weighted average of 0.19 3  
+109CD3CG (1970RI06), 0.15 2 (1971BA08), 0.33 16 (1972CH56), and 0.13 5          
+109CD4CG (1988VI03).
+109CD  L 1622.4    3 7/2+,9/2+                                                  
+109CD  G 731.0     4 0.46    4                                                  
+109CD CG E$weighted average of 729.7 5 (1969DI16), 730.9 5 (1970RI06), 731.6 5  
+109CD2CG (1971BA08), 732.2 10 (1972CH56), and 731.6 6 (1988VI03). RI$weighted   
+109CD3CG average of 0.68 7 (1969DI16), 0.53 5 (1970RI06), 0.40 3 (1971BA08),    
+109CD4CG 0.64 23 (1972CH56), and 0.45 4 (1988VI03).
+109CD  G 800.3     3 0.40    3                                                  
+109CD CG E$weighted average of 800.0 6 (1970RI06), 800.3 5 (1971BA08), 800.4 10 
+109CD2CG (1972CH56), 800.4 6 (1988VI03) and 800 2 (1969DI16). RI$weighted       
+109CD3CG average of 0.48 5 (1970RI06), 0.42 4 (1971BA08), 0.5 3 (1972CH56) and  
+109CD4CG 0.35 4 (1988VI03). Other: 0.12 3 (1969DI16)
+109CD  G 901.7     2 0.50    3                                              &   
+109CD CG E$weighted average of 901 1 (1969DI16), 900.7 6 (1970RI06), 901.6 5    
+109CD2CG (1971BA08), 901.9 10 (1972CH56) and 901.8 2 (1988VI03). Also placed as 
+109CD3CG a transition from E=1622 level. RI$weighted average of 0.44 5          
+109CD4CG (1969DI16), 0.64 10 (1970RI06), 0.50 4 (1971BA08), 0.7 3 (1972CH56) and
+109CD5CG 0.6 1 (1988VI03).
+109CD  G 948.9     2 1.96    7                                                  
+109CD CG E$weighted average of 949.1 5 (1970RI06), 949.2 5 (1971BA08), and 949.3
+109CD2CG 10 (1972CH56). RI$weighted average of 2.1 3 (1970RI06), 2.00 12        
+109CD3CG (1971BA08), and 2.1 3 (1972CH56). Other: 1.24 9 (1969DI16)
+109CD  G 998.5     3 0.87    5                                              &   
+109CD CG E$weighted average of 998 1 (1969DI16), 998.5 6 (1970RI06), 998.7 5    
+109CD2CG (1971BA08), 998.2 10 (1972CH56), and 998.5 4 (1988VI03). RI$weighted   
+109CD3CG average of 0.99 13 (1969DI16), 0.97 5 (1970RI06), 0.77 5 (1971BA08),   
+109CD4CG 1.1 3 (1972CH56), and 0.8 1 (1988VI03).
+109CD  G 1195.7    2 2.21    8                                                  
+109CD CG E$weighted average of 1195 1 (1969DI16), 1196.5 6 (1970RI06), 1196.2 5 
+109CD2CG (1971BA08), 1196.1 10 (1972CH56), and 1195.6 2 (1988VI03). RI$weighted 
+109CD3CG average of 2.5 2 (1969DI16), 2.4 3 (1970RI06), 2.20 12 (1971BA08), 2.6 
+109CD4CG 4 (1972CH56), and 2.1 1 (1988VI03).
+109CD  G 1419.0    1 1.68    6                                                  
+109CD CG E$weighted average of 1418 1 (1969DI16), 1419.2 7 (1970RI06), 1419.1 5 
+109CD2CG (1971BA08), 1419.3 10 (1972CH56), and 1419.0 1 (1988VI03). RI$weighted 
+109CD3CG average of 1.47 15 (1969DI16), 1.8 2 (1970RI06), 1.74 11 (1971BA08),   
+109CD4CG 1.9 3 (1972CH56), and 1.66 10 (1988VI03).
+109CD  G 1622.3    3 2.8     1                                                  
+109CD CG E$weighted average of 1620 1 (1969DI16), 1622.3 8 (1970RI06), 1622.5 5 
+109CD2CG (1971BA08), 1621.6 10 (1972CH56), and 1622.5 3 (1988VI03). RI$weighted 
+109CD3CG average of 2.9 2 (1969DI16), 2.8 3 (1970RI06), 3.0 2 (1971BA08), 3.2 5 
+109CD4CG (1972CH56), and 2.6 2 (1988VI03).
+109CD  L 1772.6    5 7/2+,9/2+                                                  
+109CD  G 1346.4    1 0.79    5                                                  
+109CD CG E$weighted average of 1346.9 7 (1970RI06), 1346.6 5 (1971BA08), 1346.3 
+109CD2CG 15 (1972CH56), and 1346.4 1 (1988VI03). RI$weighted average of 0.80 5  
+109CD3CG (1970RI06), 1.0 3 (1972CH56), and 0.72 10 (1988VI03). Other: 0.28 3    
+109CD4CG (1971BA08)
+109CD  G 1569.9    4 0.15    2                                                  
+109CD CG E$weighted average of 1567 2 (1969DI16), 1569 1 (1970RI06), 1570.7 5   
+109CD2CG (1971BA08), 1570.0 15 (1972CH56), and 1569.5 5 (1988VI03). RI$weighted 
+109CD3CG average of 0.12 2 (1969DI16), 0.18 3 (1970RI06), 0.18 3 (1971BA08),    
+109CD4CG 0.18 12 (1972CH56), and 0.15 5 (1988VI03).
+109CD  G 1772.5    2 0.57    3                                                  
+109CD CG E$weighted average of 1774 2 (1969DI16), 1771.9 8 (1970RI06), 1772.6 5 
+109CD2CG (1971BA08), 1772.1 10 (1972CH56), and 1772.6 3 (1988VI03). RI$weighted 
+109CD3CG average of 0.57 4 (1969DI16), 0.6 1 (1970RI06), 0.60 5 (1971BA08), 0.65
+109CD4CG 16 (1972CH56), and 0.54 5 (1988VI03).
+109CD  L 1846.6    10                                                          ?
+109CD CL E$only reported by 1976RI06
+109CD  G 1846.6    100.02    LT                                             A  ?
+109CD  L 1859.8    9 7/2+,9/2+                                                  
+109CD  G 1861.4    1 0.045   8                                                  
+109CD CG E$from 1988VI03. Others: 1860.6 10 (1970RI06), 1863 3 (1969DI16)       
+109CD2CG RI$weighted average of 0.047 9 (1969DI16), 0.04 2 (1970RI06), and 0.04 
+109CD3CG 2 (1988VI03).

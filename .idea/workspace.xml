@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8eab6c65-3442-4b7a-8a83-e6066fff3e18" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/database.ods" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scheme.svg" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/DATABASE_LVLS" afterPath="$PROJECT_DIR$/DATABASE_LVLS" />
-      <change beforePath="$PROJECT_DIR$/database_reader.py" afterPath="$PROJECT_DIR$/database_reader.py" />
-      <change beforePath="$PROJECT_DIR$/scheme_plotter.py" afterPath="$PROJECT_DIR$/scheme_plotter.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,8 +28,8 @@
       <file leaf-file-name="scheme_plotter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scheme_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+            <state relative-caret-position="468">
+              <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -342,8 +336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scheme_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+        <state relative-caret-position="468">
+          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

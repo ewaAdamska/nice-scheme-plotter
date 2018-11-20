@@ -5,7 +5,7 @@ from database_reader import Database
 #
 # matplotlib.rcParams['text.usetex'] = True
 # matplotlib.rcParams['text.latex.unicode'] = True
-
+from collections import OrderedDict
 import matplotlib.pyplot as plt
 
 class Level():
@@ -23,6 +23,7 @@ class Level():
         self.highlight_linewidth = linewidth
         self.highlighted = True
 
+
 class Transition():
 
     def __init__(self, gammaEnergy, from_lvl, to_lvl, gammaEnergy_err=None, intensity=None, instensity_err=None):
@@ -33,8 +34,27 @@ class Transition():
         self.intensity = intensity
         self.intensity_err = instensity_err
         
-        self.transition_linewidth = 1
+        self.transition_linewidth = 0.5
         self.color = 'black'
+
+
+def levelsPackage(database):
+    # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
+    # creating a dictionary {"energy value string" : Level object}
+    levels_dictionary = OrderedDict()
+    for index, row in database.levels.iterrows():
+        levels_dictionary[str(row.lvl_energy)] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
+    return levels_dictionary
+
+
+def transitionsPackage(database):
+    # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
+    # creating a dictionary {"energy value string" : Level object}
+    transitions_dictionary = OrderedDict()
+    for index, row in database.transitions.iterrows():
+        transitions_dictionary[str(row.g_energy)] = Transition(gammaEnergy=row.g_energy, from_lvl=row.from_lvl, to_lvl=row.to_lvl,\
+                                                    intensity=row.I, instensity_err=row.dI, gammaEnergy_err=row.g_energy_err)
+    return transitions_dictionary
 
 
 class Scheme():
@@ -52,7 +72,7 @@ class Scheme():
     energyAnnotationWidthFactor = 0.04
     levelLineWidthFactor = 0.9
 
-    transtitionsSpacingFactor = 0.02
+    transtitionsSpacingFactor = 0.021
 
     #privs:
     _spinAnnotationStartingPoint = 0
@@ -139,7 +159,9 @@ class Scheme():
     def addTransition(self, Transition_object):
         plt.arrow(x=self._nextArrowPoint_x , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
                   head_width=0.005*self._levelLineWidth_value, head_length=0.1*self._levelLineWidth_value,
-                    length_includes_head=True)
+                    length_includes_head=True, facecolor='black')
+
+
 
 
         box = dict(boxstyle='square', facecolor='white', color='white', alpha=1)
@@ -151,10 +173,18 @@ class Scheme():
         self._nextArrowPoint_x -= self._transitionsSpacingValue
 
 
+    def addLevelsPackage(self, levelsPackage):
+        for key in levelsPackage.keys():
+            scheme.addLevel(levelsPackage[key])
+
+    def addTransitionsPackage(self, transitionsPackage):
+        # -1 means reversed sorting
+        for key in [t[0] for t in sorted(transitionsPackage.items(), key=lambda x: (x[1].from_lvl, -1 * x[1].to_lvl))]:
+            scheme.addTransition(transitionsPackage[key])
 
 
+    def show(self):
 
-    def plot(self):
         # temp solution
 
         plt.text(0.48, 0.05, r'$^{63}$Ni', fontsize=20, transform=plt.gcf().transFigure)
@@ -163,38 +193,19 @@ class Scheme():
 
 
 
+
+
 scheme = Scheme()
 
+levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
+transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
 
-data = Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS')
-print(data.levels)
+levels['4055.0'].highlight(linewidth=2, color='red')
 
-#TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
-#creating a dictionary {"energy value string" : Level object}
-levels_dictionary = {}
-for index, row in data.levels.iterrows():
-    if row.lvl_energy == 4331.00:
-        levels_dictionary['4331.00'] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
-        levels_dictionary['4331.00'].highlight(linewidth=2)
-
-    else:
-        levels_dictionary[str(row.lvl_energy)] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
+scheme.addLevelsPackage(levelsPackage = levels)
+scheme.addTransitionsPackage(transitionsPackage = transitions)
 
 
 
-for key in levels_dictionary.keys():
-    scheme.addLevel(levels_dictionary[key])
-
-
-########### Transitions
-trans_1 = Transition(gammaEnergy=1001.1, from_lvl=1001.1, to_lvl=0)
-trans_2 = Transition(gammaEnergy=845.1, from_lvl=1001.1, to_lvl=155.57)
-trans_3 = Transition(gammaEnergy=483.1, from_lvl=1001.1, to_lvl=517.6)
-
-
-scheme.addTransition(trans_3)
-scheme.addTransition(trans_2)
-scheme.addTransition(trans_1)
-
-scheme.plot()
+scheme.show()
 

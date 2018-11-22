@@ -34,9 +34,13 @@ class Transition():
         self.intensity = intensity
         self.intensity_err = instensity_err
         
-        self.transition_linewidth = 0.5
+        self.transition_linewidth = 0.001
         self.color = 'black'
-
+        self.linestyle='solid'
+    def _linestyle(self):
+        if self.linestyle=='dashed':
+            return (1, (10, 10))
+        #possible linestyles: 'solid', 'dashed', 'dashdot', 'dotted'
 
 def levelsPackage(database):
     # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
@@ -67,6 +71,7 @@ class Scheme():
     schemeHeight = 7000
 
     fontSize = 10
+    transition_fontSize = 8
 
     spinAnnotationWidthFactor = 0.04
     energyAnnotationWidthFactor = 0.04
@@ -135,14 +140,21 @@ class Scheme():
             else:
                 plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-',
                          lw=Level_object.highlight_linewidth, color=Level_object.color)
-        def addSpin(spinValue, energy, h):
+
+        def addSpin(spinValue, parityValue, energy, h):
             # h is additional height of splitted part of level line
             #TODO: annotation width should be scalled by using self.energyAnnotationStartingPoint etc. (!!!)
+
+            if parityValue=='-' or parityValue=='+':
+                spinAnnotationString = r'${}^{}$'.format(spinValue, parityValue)
+            else:
+                spinAnnotationString = ''
 
             plt.plot([self._spinAnnotationStartingPoint,self._spinAnnotationEndingPoint], [self.annotationLvl, self.annotationLvl], 'k-', lw=Level_object.level_linewidth)
             plt.plot([self._spinAnnotationStartingPoint,self._spinAnnotationEndingPoint], [self.annotationLvl, self.annotationLvl], 'k-', lw=Level_object.level_linewidth)
             plt.plot([self._spinAnnotationEndingPoint,self._levelLineStartingPoint], [self.annotationLvl, energy], 'k-', lw=Level_object.level_linewidth)
-            plt.text(x=self._spinAnnotationTextPoint, y=(self.annotationLvl)+0.01*self.schemeHeight, s=spinValue, size=self.fontSize, horizontalalignment='center')
+            plt.text(x=self._spinAnnotationTextPoint, y=(self.annotationLvl)+0.01*self.schemeHeight, s=spinAnnotationString, size=self.fontSize, horizontalalignment='center')
+
 
         def addEnergy(energyValue, energy, h):
             # h is additional height of splitted part of level line
@@ -151,7 +163,7 @@ class Scheme():
             plt.text(x=self._energyAnnotationTextPoint, y=self.annotationLvl+0.01*self.schemeHeight, s=energyValue, size=self.fontSize, horizontalalignment='center')
 
         addLevelLine(energy=Level_object.energy)
-        addSpin(spinValue=Level_object.spinValue, energy=Level_object.energy, h=self._annotationBoxHeight)
+        addSpin(spinValue=Level_object.spinValue, parityValue=Level_object.parity, energy=Level_object.energy, h=self._annotationBoxHeight)
         addEnergy(energyValue=str(Level_object.energy), energy=Level_object.energy, h=self._annotationBoxHeight)
 
         # print(self.annotationLvl)
@@ -159,15 +171,25 @@ class Scheme():
     def addTransition(self, Transition_object):
         plt.arrow(x=self._nextArrowPoint_x , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
                   head_width=0.005*self._levelLineWidth_value, head_length=0.1*self._levelLineWidth_value,
-                    length_includes_head=True, facecolor='black')
+                    length_includes_head=True, facecolor=Transition_object.color, color=Transition_object.color,\
+                    width=Transition_object.transition_linewidth, alpha=1, linestyle=Transition_object._linestyle())
 
+        # TODO: maybe its better to use ax.annotate
+        # plt.annotate("Annotation",
+        #             xy=(0, 1), xycoords='data',
+        #             xytext=(1, 2), textcoords='offset points',
+        #             )
+        #
 
 
 
         box = dict(boxstyle='square', facecolor='white', color='white', alpha=1)
         plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=str(Transition_object.gammaEnergy),\
-                 fontsize = 10, rotation=60, horizontalalignment='center', verticalalignment='bottom',\
+                 fontsize = self.transition_fontSize, rotation=60, horizontalalignment='center', verticalalignment='bottom',\
                  bbox=box)
+        # plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=str(Transition_object.gammaEnergy),\
+        #          fontsize = 10, rotation=60, horizontalalignment='center', verticalalignment='bottom',\
+        #          bbox=box)
 
 
         self._nextArrowPoint_x -= self._transitionsSpacingValue
@@ -182,13 +204,13 @@ class Scheme():
         for key in [t[0] for t in sorted(transitionsPackage.items(), key=lambda x: (x[1].from_lvl, -1 * x[1].to_lvl))]:
             scheme.addTransition(transitionsPackage[key])
 
+    def addNucleiName(self, nucleiName=r'$^{63}$Ni'):
+        plt.text(0.48, 0.05, nucleiName, fontsize=20, transform=plt.gcf().transFigure)
+
+    def save(self, fileName='scheme.svg'):
+        plt.savefig(fileName)
 
     def show(self):
-
-        # temp solution
-
-        plt.text(0.48, 0.05, r'$^{63}$Ni', fontsize=20, transform=plt.gcf().transFigure)
-        plt.savefig('scheme.svg')
         plt.show()
 
 
@@ -201,6 +223,11 @@ levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transition
 transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
 
 levels['4055.0'].highlight(linewidth=2, color='red')
+transitions['3900.0'].linestyle = 'dashed'
+transitions['2379.2'].color='blue'
+transitions['805.8'].color='green'
+transitions['805.8'].transition_linewidth=2
+
 
 scheme.addLevelsPackage(levelsPackage = levels)
 scheme.addTransitionsPackage(transitionsPackage = transitions)

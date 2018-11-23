@@ -39,8 +39,15 @@ class Transition():
         self.linestyle='solid'
     def _linestyle(self):
         if self.linestyle=='dashed':
-            return (1, (10, 10))
+            return (1, (5, 10))
         #possible linestyles: 'solid', 'dashed', 'dashdot', 'dotted'
+
+
+
+############################################################################################################################################################
+############################################################################################################################################################
+
+
 
 def levelsPackage(database):
     # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
@@ -53,7 +60,7 @@ def levelsPackage(database):
 
 def transitionsPackage(database):
     # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
-    # creating a dictionary {"energy value string" : Level object}
+    # creating a dictionary {"energy value string" : Transition object}
     transitions_dictionary = OrderedDict()
     for index, row in database.transitions.iterrows():
         transitions_dictionary[str(row.g_energy)] = Transition(gammaEnergy=row.g_energy, from_lvl=row.from_lvl, to_lvl=row.to_lvl,\
@@ -61,12 +68,22 @@ def transitionsPackage(database):
     return transitions_dictionary
 
 
+############################################################################################################################################################
+############################################################################################################################################################
+
+
 class Scheme():
+    # These attributes must be Class-Attributes, because when we create many instances of Scheme class,
+    # we want them to be identically set up. For example: if we split our decay scheme for many pages
+    # we create separated instances of Scheme class for each page. If we decide to change font size
+    # or any other scheme's geometry property we want to change it for all Scheme objects.
+
 
     # publics:
     figureWidth = 12
     scalingHeightFactor = 0.6 # 0.7 for A4
 
+    # bug! zmiana tych wartosci wszystko psuje
     schemeWidth = 1000
     schemeHeight = 7000
 
@@ -79,15 +96,37 @@ class Scheme():
 
     transtitionsSpacingFactor = 0.021
 
-    #privs:
-    _spinAnnotationStartingPoint = 0
 
-    _lastAnnotationPointHeight = 0
-    _annotationBoxHeight = 200          #TODO: this might be scalled automatically with font size
+    # private Class instances:
+    _number_of_schemes = 0
 
 
+    def __init__(self, **kwargs):
 
-    def __init__(self, *args, **kwargs):
+        if kwargs is not None:
+            for key, value in kwargs.items():
+                if key in Scheme.__dict__.keys(): #this is checking if we are not creating new, not necessary atributes
+                    setattr(self, key, value)
+
+
+        # These attributes must be Instance-attributes because they are specified for each Scheme instance
+        # object, separately. They are also private attributes, its not good to change them from outside
+        # of class code.
+        # privs:
+        self._spinAnnotationStartingPoint = 0
+
+        self._lastAnnotationPointHeight = 0
+        self._annotationBoxHeight = 200  # TODO: this might be scalled automatically with font size
+
+        self.__setPlotParameters()
+
+        #updating Class Atribute:
+        #counting number of Scheme instances
+        Scheme._number_of_schemes += 1
+
+    #TODO: add 'set' functions for all important atributes
+
+    def __setPlotParameters(self):
 
         self._spinAnnotationStartingPoint = 0
         self._spinAnnotationEndingPoint = self.schemeWidth*self.spinAnnotationWidthFactor
@@ -101,13 +140,13 @@ class Scheme():
         self._energyAnnotationTextPoint = self.schemeWidth - self._energyAnnotationWidth_value / 2
 
 
+
         self._levelLineStartingPoint = 0.5*self.schemeWidth*(1 - self.levelLineWidthFactor)
         self._levelLineEndingPoint = self.schemeWidth*(1-0.5*(1 - self.levelLineWidthFactor))
         self._levelLineWidth_value = self._levelLineEndingPoint - self._levelLineStartingPoint
 
         self._nextArrowPoint_x = self._levelLineEndingPoint-0.01*self.schemeWidth
         self._transitionsSpacingValue = self._levelLineWidth_value * self.transtitionsSpacingFactor
-
 
         self.__prepareCanvas()
 
@@ -124,15 +163,18 @@ class Scheme():
 
 
     def addLevel(self, Level_object):
-        #### TODO: this part can be improved
 
+        #### TODO: this part can be improved
         self.annotationLvl = Level_object.energy
+
         while self.annotationLvl < self._lastAnnotationPointHeight:
             self.annotationLvl += self._annotationBoxHeight
 
         self._lastAnnotationPointHeight = self.annotationLvl + self._annotationBoxHeight
 
-        ########
+
+
+        ######## TODO ^^^
 
         def addLevelLine(energy):
             if Level_object.highlighted == False:
@@ -141,7 +183,7 @@ class Scheme():
                 plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-',
                          lw=Level_object.highlight_linewidth, color=Level_object.color)
 
-        def addSpin(spinValue, parityValue, energy, h):
+        def addSpin(spinValue, parityValue, energy):
             # h is additional height of splitted part of level line
             #TODO: annotation width should be scalled by using self.energyAnnotationStartingPoint etc. (!!!)
 
@@ -156,17 +198,16 @@ class Scheme():
             plt.text(x=self._spinAnnotationTextPoint, y=(self.annotationLvl)+0.01*self.schemeHeight, s=spinAnnotationString, size=self.fontSize, horizontalalignment='center')
 
 
-        def addEnergy(energyValue, energy, h):
+        def addEnergy(energyValue, energy):
             # h is additional height of splitted part of level line
             plt.plot([self._energyAnnotationStartingPoint, self._energyAnnotationEndingPoint], [self.annotationLvl, self.annotationLvl], 'k-', lw=Level_object.level_linewidth)
             plt.plot([self._levelLineEndingPoint,self._energyAnnotationStartingPoint], [energy, self.annotationLvl], 'k-', lw=Level_object.level_linewidth)
             plt.text(x=self._energyAnnotationTextPoint, y=self.annotationLvl+0.01*self.schemeHeight, s=energyValue, size=self.fontSize, horizontalalignment='center')
 
         addLevelLine(energy=Level_object.energy)
-        addSpin(spinValue=Level_object.spinValue, parityValue=Level_object.parity, energy=Level_object.energy, h=self._annotationBoxHeight)
-        addEnergy(energyValue=str(Level_object.energy), energy=Level_object.energy, h=self._annotationBoxHeight)
+        addSpin(spinValue=Level_object.spinValue, parityValue=Level_object.parity, energy=Level_object.energy)
+        addEnergy(energyValue=str(Level_object.energy), energy=Level_object.energy)
 
-        # print(self.annotationLvl)
 
     def addTransition(self, Transition_object):
         plt.arrow(x=self._nextArrowPoint_x , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
@@ -183,31 +224,33 @@ class Scheme():
 
 
 
-        box = dict(boxstyle='square', facecolor='white', color='white', alpha=1)
+        box = dict(boxstyle='square', facecolor='white', color='white', alpha=1, pad=0) #udalo sie zmienic rozmiar white box za pomoca parametru pad
         plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=str(Transition_object.gammaEnergy),\
                  fontsize = self.transition_fontSize, rotation=60, horizontalalignment='center', verticalalignment='bottom',\
                  bbox=box)
-        # plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=str(Transition_object.gammaEnergy),\
-        #          fontsize = 10, rotation=60, horizontalalignment='center', verticalalignment='bottom',\
-        #          bbox=box)
-
 
         self._nextArrowPoint_x -= self._transitionsSpacingValue
 
 
     def addLevelsPackage(self, levelsPackage):
         for key in levelsPackage.keys():
-            scheme.addLevel(levelsPackage[key])
+            self.addLevel(levelsPackage[key])
 
     def addTransitionsPackage(self, transitionsPackage):
         # -1 means reversed sorting
         for key in [t[0] for t in sorted(transitionsPackage.items(), key=lambda x: (x[1].from_lvl, -1 * x[1].to_lvl))]:
-            scheme.addTransition(transitionsPackage[key])
+            self.addTransition(transitionsPackage[key])
 
     def addNucleiName(self, nucleiName=r'$^{63}$Ni'):
         plt.text(0.48, 0.05, nucleiName, fontsize=20, transform=plt.gcf().transFigure)
 
-    def save(self, fileName='scheme.svg'):
+    def save(self, fileName=None):
+        if fileName:
+            pass
+        else:
+            fileName = 'scheme_part_{}.svg'.format(self._number_of_schemes)
+
+        print('Scheme saved to the file {}'.format(fileName))
         plt.savefig(fileName)
 
     def show(self):
@@ -216,8 +259,8 @@ class Scheme():
 
 
 
-
 scheme = Scheme()
+
 
 levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
 transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
@@ -231,8 +274,13 @@ transitions['805.8'].transition_linewidth=2
 
 scheme.addLevelsPackage(levelsPackage = levels)
 scheme.addTransitionsPackage(transitionsPackage = transitions)
-
-
-
 scheme.show()
 
+
+# scheme.save()
+#
+# scheme_2 = Scheme()
+# scheme_2.addLevelsPackage(levelsPackage = levels)
+# scheme_2.addTransitionsPackage(transitionsPackage = transitions)
+# scheme_2.show()
+# scheme_2.save()

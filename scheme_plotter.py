@@ -17,11 +17,21 @@ class Level():
         self.parity = parity
         self.level_linewidth = 0.5
         self.color = 'black' #RGB codes
+        self.linestyle = 'solid'
+
 
     def highlight(self, linewidth=4, color='red'):
         self.color= color
         self.highlight_linewidth = linewidth
         self.highlighted = True
+
+
+    def _linestyle(self):
+        if self.linestyle=='dashed':
+            return (1, (5, 10))
+
+
+
 
 
 class Transition():
@@ -37,12 +47,25 @@ class Transition():
         self.transition_linewidth = 0.001
         self.color = 'black'
         self.linestyle='solid'
+
     def _linestyle(self):
         if self.linestyle=='dashed':
             return (1, (5, 10))
-        #possible linestyles: 'solid', 'dashed', 'dashdot', 'dotted'
 
 
+    def transitionDescription(self):
+
+        transitionDescription = ''
+        if self.gammaEnergy:
+            transitionDescription += '{}'.format(self.gammaEnergy)
+            if self.gammaEnergy_err:
+                transitionDescription += '({})'.format(self.gammaEnergy_err)
+        if self.intensity:
+            transitionDescription += ' {}'.format(self.intensity)
+            if self.intensity_err:
+                transitionDescription += '({})'.format(self.intensity_err)
+
+        return transitionDescription
 
 ############################################################################################################################################################
 ############################################################################################################################################################
@@ -119,6 +142,8 @@ class Scheme():
         self._annotationBoxHeight = 200  # TODO: this might be scalled automatically with font size
 
         self.__setPlotParameters()
+        self.__prepareCanvas()
+
 
         #updating Class Atribute:
         #counting number of Scheme instances
@@ -148,8 +173,6 @@ class Scheme():
         self._nextArrowPoint_x = self._levelLineEndingPoint-0.01*self.schemeWidth
         self._transitionsSpacingValue = self._levelLineWidth_value * self.transtitionsSpacingFactor
 
-        self.__prepareCanvas()
-
 
     def __prepareCanvas(self):
         fig, ax = plt.subplots(figsize=(self.figureWidth, self.scalingHeightFactor * self.figureWidth))
@@ -178,7 +201,7 @@ class Scheme():
 
         def addLevelLine(energy):
             if Level_object.highlighted == False:
-                plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-', lw=Level_object.level_linewidth, color=Level_object.color)
+                plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-', lw=Level_object.level_linewidth, color=Level_object.color, linestyle=Level_object._linestyle())
             else:
                 plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-',
                          lw=Level_object.highlight_linewidth, color=Level_object.color)
@@ -210,6 +233,9 @@ class Scheme():
 
 
     def addTransition(self, Transition_object):
+
+
+
         plt.arrow(x=self._nextArrowPoint_x , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
                   head_width=0.005*self._levelLineWidth_value, head_length=0.1*self._levelLineWidth_value,
                     length_includes_head=True, facecolor=Transition_object.color, color=Transition_object.color,\
@@ -225,8 +251,8 @@ class Scheme():
 
 
         box = dict(boxstyle='square', facecolor='white', color='white', alpha=1, pad=0) #udalo sie zmienic rozmiar white box za pomoca parametru pad
-        plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=str(Transition_object.gammaEnergy),\
-                 fontsize = self.transition_fontSize, rotation=60, horizontalalignment='center', verticalalignment='bottom',\
+        plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=Transition_object.transitionDescription(),\
+                 fontsize = self.transition_fontSize, rotation=60, horizontalalignment='left', verticalalignment='bottom',\
                  bbox=box)
 
         self._nextArrowPoint_x -= self._transitionsSpacingValue
@@ -266,6 +292,8 @@ levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transition
 transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
 
 levels['4055.0'].highlight(linewidth=2, color='red')
+levels['1324.01'].linestyle='dashed'
+
 transitions['3900.0'].linestyle = 'dashed'
 transitions['2379.2'].color='blue'
 transitions['805.8'].color='green'
@@ -274,6 +302,8 @@ transitions['805.8'].transition_linewidth=2
 
 scheme.addLevelsPackage(levelsPackage = levels)
 scheme.addTransitionsPackage(transitionsPackage = transitions)
+
+scheme.addNucleiName(r'$^{63}$Ni')
 scheme.show()
 
 

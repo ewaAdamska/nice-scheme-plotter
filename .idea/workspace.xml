@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8eab6c65-3442-4b7a-8a83-e6066fff3e18" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/nice_scheme_plotter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nice_scheme_plotter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheme_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheme_plotter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scheme_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+            <state relative-caret-position="467">
+              <caret line="192" column="67" lean-forward="true" selection-start-line="192" selection-start-column="67" selection-end-line="192" selection-end-column="67" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -62,6 +60,7 @@
       <find>print</find>
       <find>prin</find>
       <find>figureWidth</find>
+      <find>_linestyle</find>
     </findStrings>
     <replaceStrings>
       <replace>_lastAnnotationPointHeight</replace>
@@ -203,12 +202,12 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16546762" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16546762" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" x="2011" y="95" width="1807" height="925" id="Run" order="2" type="FLOATING" weight="0.23110151" />
+      <window_info active="true" anchor="bottom" x="2011" y="95" width="1807" height="925" id="Run" order="2" type="FLOATING" visible="true" weight="0.23110151" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -263,8 +262,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scheme_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+        <state relative-caret-position="467">
+          <caret line="192" column="67" lean-forward="true" selection-start-line="192" selection-start-column="67" selection-end-line="192" selection-end-column="67" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

@@ -30,7 +30,6 @@ class Level():
 
 
 
-
 class Transition():
 
     def __init__(self, gammaEnergy, from_lvl, to_lvl, gammaEnergy_err=None, intensity=None, instensity_err=None):
@@ -58,7 +57,7 @@ class Transition():
             if self.gammaEnergy_err:
                 transitionDescription += '({})'.format(self.gammaEnergy_err)
         if self.intensity:
-            transitionDescription += ' {}'.format(self.intensity)
+            transitionDescription += '   {}'.format(self.intensity)
             if self.intensity_err:
                 transitionDescription += '({})'.format(self.intensity_err)
 
@@ -106,22 +105,23 @@ class Scheme():
 
 
     # publics:
-    figureWidth = 12
+    figureWidth = 20
     scalingHeightFactor = 0.6 # 0.7 for A4
+    dpi = 75
 
     # bug! zmiana tych wartosci wszystko psuje
-    schemeWidth = 1000
+    schemeWidth = 10000
     schemeHeight = 7000
 
 
-    fontSize = 10
-    transition_fontSize = 8
+    fontSize = 14
+    transition_fontSize = 12
 
     spinAnnotationWidthFactor = 0.04
     energyAnnotationWidthFactor = 0.04
 
-    spinAnnotationSlope = 0.005
-    energyAnnotationSlope = 0.005
+    spinAnnotationSlopeFactor = 0.01
+    energyAnnotationSlopeFactor = 0.01
 
 
     transtitionsSpacingFactor = 0.021
@@ -148,7 +148,7 @@ class Scheme():
         self._lastAnnotationPointHeight = 0
         self._annotationBoxHeight = 200  # TODO: this might be scalled automatically with font size
 
-        self.__setPlotParameters()
+        self.__setPlotGeometry()
         self.__prepareCanvas()
 
         #updating Class Atribute:
@@ -157,32 +157,41 @@ class Scheme():
 
     #TODO: add 'set' functions for all important atributes
 
-    def __setPlotParameters(self):
+    def __setPlotGeometry(self):
+
+        self._energyAnnotationSlope = self.energyAnnotationSlopeFactor * self.schemeWidth
+        self._spinAnnotationSlope = self.spinAnnotationSlopeFactor * self.schemeWidth
+
 
         self._spinAnnotationStartingPoint = 0
-        self._spinAnnotationEndingPoint = self.schemeWidth*self.spinAnnotationWidthFactor
+        self._spinAnnotationEndingPoint = self.spinAnnotationWidthFactor * self.schemeWidth
         self._spinAnnotationWidth_value = self._spinAnnotationEndingPoint - self._spinAnnotationStartingPoint
         self._spinAnnotationTextPoint = self._spinAnnotationWidth_value / 2
 
 
-        self._energyAnnotationStartingPoint = self.schemeWidth * (1 - self.energyAnnotationWidthFactor)
+        self._energyAnnotationStartingPoint = (1 - self.energyAnnotationWidthFactor)* self.schemeWidth
         self._energyAnnotationEndingPoint = self.schemeWidth
         self._energyAnnotationWidth_value = self._energyAnnotationEndingPoint - self._energyAnnotationStartingPoint
         self._energyAnnotationTextPoint = self.schemeWidth - self._energyAnnotationWidth_value / 2
 
 
-
-        self._levelLineStartingPoint = self._spinAnnotationEndingPoint + self.spinAnnotationSlope*self.schemeWidth
-        self._levelLineEndingPoint = self._energyAnnotationStartingPoint-self.energyAnnotationSlope*self.schemeWidth
+        self._levelLineStartingPoint = self._spinAnnotationEndingPoint + self._spinAnnotationSlope
+        self._levelLineEndingPoint = self._energyAnnotationStartingPoint-self._energyAnnotationSlope
         self._levelLineWidth_value = self._levelLineEndingPoint - self._levelLineStartingPoint
 
-        self._nextArrowPoint_x = self._levelLineEndingPoint-0.01*self.schemeWidth
+
+        self._firstArrowPoint = self._levelLineEndingPoint-0.02*self.schemeWidth #first Arrow Point
+        self._nextArrowPoint =  self._firstArrowPoint #will be updated
         self._transitionsSpacingValue = self._levelLineWidth_value * self.transtitionsSpacingFactor
 
 
+    def enableLatex(self):
+        plt.rcParams.update({"text.usetex" : True})
+
     def __prepareCanvas(self):
-        fig, ax = plt.subplots(figsize=(self.figureWidth, self.scalingHeightFactor * self.figureWidth))
+        fig, ax = plt.subplots(figsize=(self.figureWidth, self.scalingHeightFactor * self.figureWidth), dpi=self.dpi)
         plt.subplots_adjust(left=0.01, right=0.99)
+
         plt.rcParams.update({'font.size': self.fontSize}) # setting up font for all labels
 
 
@@ -239,29 +248,22 @@ class Scheme():
 
 
     def addTransition(self, Transition_object):
+        arrowHeadWidth = 0.005*self._levelLineWidth_value
+        arrowHeadLength =  0.01*self._levelLineWidth_value
 
-
-
-        plt.arrow(x=self._nextArrowPoint_x , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
-                  head_width=0.005*self._levelLineWidth_value, head_length=0.1*self._levelLineWidth_value,
+        plt.arrow(x=self._nextArrowPoint , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
+                  head_width=arrowHeadWidth, head_length=arrowHeadLength,
                     length_includes_head=True, facecolor=Transition_object.color, color=Transition_object.color,\
                     width=Transition_object.transition_linewidth, alpha=1, linestyle=Transition_object._linestyle())
 
-        # TODO: maybe its better to use ax.annotate
-        # plt.annotate("Annotation",
-        #             xy=(0, 1), xycoords='data',
-        #             xytext=(1, 2), textcoords='offset points',
-        #             )
-        #
-
-
 
         box = dict(boxstyle='square', facecolor='white', color='white', alpha=1, pad=0) #udalo sie zmienic rozmiar white box za pomoca parametru pad
-        plt.text(x=self._nextArrowPoint_x, y=Transition_object.from_lvl+self.schemeHeight*0.01, s=Transition_object.transitionDescription(),\
+        plt.text(x=self._nextArrowPoint, y=Transition_object.from_lvl+self.schemeHeight*0.002, s=Transition_object.transitionDescription(),\
                  fontsize = self.transition_fontSize, rotation=60, horizontalalignment='left', verticalalignment='bottom',\
                  bbox=box)
 
-        self._nextArrowPoint_x -= self._transitionsSpacingValue
+
+        self._nextArrowPoint -= self._transitionsSpacingValue
 
 
     def addLevelsPackage(self, levelsPackage):
@@ -274,7 +276,7 @@ class Scheme():
             self.addTransition(transitionsPackage[key])
 
     def addNucleiName(self, nucleiName=r'$^{63}$Ni'):
-        plt.text(0.48, 0.05, nucleiName, fontsize=20, transform=plt.gcf().transFigure)
+        plt.text(0.48, 0.05, nucleiName, fontsize=48, transform=plt.gcf().transFigure)
 
     def save(self, fileName=None):
         if fileName:
@@ -298,22 +300,34 @@ if __name__ == '__main__':
     levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
     transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
 
-    levels['4055.0'].highlight(linewidth=2, color='red')
+
+
+    levels['2696.3'].highlight(linewidth=2, color='red')
     levels['1324.01'].linestyle='dashed'
 
 
-    transitions['3900.0'].linestyle = 'dashed'
-    transitions['2379.2'].color='blue'
-    transitions['805.8'].color='green'
-    transitions['805.8'].transition_linewidth=2
+    transitions['5514.64'].linestyle = 'dashed'
+
+    transitions['4142.5'].color = 'red'
+    transitions['4142.5'].transition_linewidth = 5
+    transitions['1371.3'].color = 'purple'
+    transitions['2178.18'].color ='blue'
+    transitions['2540.9'].color ='green'
+    transitions['2696.8'].color = 'red'
 
 
     print(levels['4055.0'])
     print(transitions['86.8'])
 
+
+    #scheme.enableLatex()
+
     scheme.addLevelsPackage(levelsPackage = levels)
     scheme.addTransitionsPackage(transitionsPackage = transitions)
 
+
     scheme.addNucleiName(r'$^{63}$Ni')
+
+
     scheme.show()
 

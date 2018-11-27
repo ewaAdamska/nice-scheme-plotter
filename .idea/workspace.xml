@@ -3,16 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8eab6c65-3442-4b7a-8a83-e6066fff3e18" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.ods" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATABASE_LVLS" beforeDir="false" afterPath="$PROJECT_DIR$/DATABASE_LVLS" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ens2xls/Notes.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ens2xls/ens2xls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ens2xls/example.ens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ens2xls/output.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examplary_scheme.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheme.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scheme_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheme_plotter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.svg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -34,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scheme_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="123" column="33" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
+            <state relative-caret-position="435">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -60,7 +53,6 @@
       <find>ax.</find>
       <find>fig</find>
       <find>self._spinAnnotationEndingPoint</find>
-      <find>_nextArrowPoint_x</find>
       <find>_lastAnnotationPointHeight</find>
       <find>_lastAnnotation</find>
       <find>schemeHeight</find>
@@ -69,6 +61,12 @@
       <find>figureWidth</find>
       <find>_linestyle</find>
       <find>levelLineWidthFactor</find>
+      <find>energyAnnotationSlope</find>
+      <find>_nextArrowPoint_x</find>
+      <find>trans</find>
+      <find>addTran</find>
+      <find>rc</find>
+      <find>figu</find>
     </findStrings>
     <replaceStrings>
       <replace>_lastAnnotationPointHeight</replace>
@@ -76,6 +74,8 @@
       <replace>_nextArrowPoint_x</replace>
       <replace>self.plt.</replace>
       <replace>linestyle</replace>
+      <replace>energyAnnotationSlopeFactor</replace>
+      <replace>nextArrowPoint_x</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -215,20 +215,23 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
       <window_info active="true" anchor="bottom" x="2011" y="95" width="1807" height="925" id="Run" order="2" type="FLOATING" visible="true" weight="0.23110151" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32809225" />
+      <window_info anchor="bottom" id="Python Console" order="8" weight="0.32937366" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32721382" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24958494" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/scheme_example.svg" />
@@ -240,6 +243,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scheme.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/DATABASE_TRANS">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -247,27 +253,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/latex_try.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/DATABASE_LVLS">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+        <state relative-caret-position="135">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scheme.svg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/database2.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scheme_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="123" column="33" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>

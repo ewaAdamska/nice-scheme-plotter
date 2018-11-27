@@ -1,8 +1,6 @@
 #!/usr/bin/python3.5
-import numpy as np
 import pandas as pd
-import sys
-import itertools
+
 
 class ResultsFromAna:
     def __new__(cls, name, path=''):

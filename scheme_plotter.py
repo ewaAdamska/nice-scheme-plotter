@@ -1,23 +1,18 @@
-import numpy as np
-import pandas as pd
 from database_reader import Database
-# import matplotlib
-#
-# matplotlib.rcParams['text.usetex'] = True
-# matplotlib.rcParams['text.latex.unicode'] = True
 from collections import OrderedDict
 import matplotlib.pyplot as plt
 
 class Level():
-    highlighted = False
-
-    def __init__(self, energy, spinValue='', parity=''):
+    def __init__(self, energy, spinValue=None, parity=None, lifetime=None):
         self.energy = energy
         self.spinValue = spinValue
         self.parity = parity
         self.level_linewidth = 0.5
         self.color = 'black' #RGB codes
         self.linestyle = 'solid'
+        self.lifetime = lifetime
+
+        self.highlighted = False
 
 
     def highlight(self, linewidth=4, color='red'):
@@ -30,6 +25,8 @@ class Level():
         if self.linestyle=='dashed':
             return (1, (5, 10))
 
+    def __str__(self):
+        return 'Level object (energy = {} \t spinValue = {} \t parity = {} \t lifetime = {})'.format(self.energy, self.spinValue, self.parity, self.lifetime)
 
 
 
@@ -43,7 +40,7 @@ class Transition():
         self.gammaEnergy_err = gammaEnergy_err
         self.intensity = intensity
         self.intensity_err = instensity_err
-        
+
         self.transition_linewidth = 0.001
         self.color = 'black'
         self.linestyle='solid'
@@ -66,6 +63,12 @@ class Transition():
                 transitionDescription += '({})'.format(self.intensity_err)
 
         return transitionDescription
+
+
+    def __str__(self):
+        string = 'Transition object (gamma energy = {} \t from level = {} \t to level = {})'.format(self.gammaEnergy, self.from_lvl, self.to_lvl)
+
+        return string
 
 ############################################################################################################################################################
 ############################################################################################################################################################
@@ -110,12 +113,16 @@ class Scheme():
     schemeWidth = 1000
     schemeHeight = 7000
 
+
     fontSize = 10
     transition_fontSize = 8
 
     spinAnnotationWidthFactor = 0.04
     energyAnnotationWidthFactor = 0.04
-    levelLineWidthFactor = 0.9
+
+    spinAnnotationSlope = 0.005
+    energyAnnotationSlope = 0.005
+
 
     transtitionsSpacingFactor = 0.021
 
@@ -144,7 +151,6 @@ class Scheme():
         self.__setPlotParameters()
         self.__prepareCanvas()
 
-
         #updating Class Atribute:
         #counting number of Scheme instances
         Scheme._number_of_schemes += 1
@@ -166,8 +172,8 @@ class Scheme():
 
 
 
-        self._levelLineStartingPoint = 0.5*self.schemeWidth*(1 - self.levelLineWidthFactor)
-        self._levelLineEndingPoint = self.schemeWidth*(1-0.5*(1 - self.levelLineWidthFactor))
+        self._levelLineStartingPoint = self._spinAnnotationEndingPoint + self.spinAnnotationSlope*self.schemeWidth
+        self._levelLineEndingPoint = self._energyAnnotationStartingPoint-self.energyAnnotationSlope*self.schemeWidth
         self._levelLineWidth_value = self._levelLineEndingPoint - self._levelLineStartingPoint
 
         self._nextArrowPoint_x = self._levelLineEndingPoint-0.01*self.schemeWidth
@@ -284,33 +290,30 @@ class Scheme():
 
 
 
+if __name__ == '__main__':
 
-scheme = Scheme()
-
-
-levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
-transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
-
-levels['4055.0'].highlight(linewidth=2, color='red')
-levels['1324.01'].linestyle='dashed'
-
-transitions['3900.0'].linestyle = 'dashed'
-transitions['2379.2'].color='blue'
-transitions['805.8'].color='green'
-transitions['805.8'].transition_linewidth=2
+    scheme = Scheme()
 
 
-scheme.addLevelsPackage(levelsPackage = levels)
-scheme.addTransitionsPackage(transitionsPackage = transitions)
+    levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
+    transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
 
-scheme.addNucleiName(r'$^{63}$Ni')
-scheme.show()
+    levels['4055.0'].highlight(linewidth=2, color='red')
+    levels['1324.01'].linestyle='dashed'
 
 
-# scheme.save()
-#
-# scheme_2 = Scheme()
-# scheme_2.addLevelsPackage(levelsPackage = levels)
-# scheme_2.addTransitionsPackage(transitionsPackage = transitions)
-# scheme_2.show()
-# scheme_2.save()
+    transitions['3900.0'].linestyle = 'dashed'
+    transitions['2379.2'].color='blue'
+    transitions['805.8'].color='green'
+    transitions['805.8'].transition_linewidth=2
+
+
+    print(levels['4055.0'])
+    print(transitions['86.8'])
+
+    scheme.addLevelsPackage(levelsPackage = levels)
+    scheme.addTransitionsPackage(transitionsPackage = transitions)
+
+    scheme.addNucleiName(r'$^{63}$Ni')
+    scheme.show()
+

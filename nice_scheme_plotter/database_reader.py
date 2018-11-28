@@ -1,0 +1,250 @@
+# !/usr/bin/python3.5
+import pandas as pd
+from collections import OrderedDict
+
+
+class Level():
+    """This is class for excited nuclear levels, which contains all information
+    about level itself and its plotting style.
+
+    Parameters
+    ----------
+    energy : float
+        Excited level energy.
+    spinValue : str
+        Spin value as a string '1/2', '5/2', etc.
+    parity : str {'+', '-', ''} or None
+        Level parity.
+    lifetime : float
+        Excited level lifetime.
+
+    Attributes
+    ----------
+    energy : float
+        Excited level energy
+    spinValue : str
+        Excited level spin, represented by a string. Example: '1/2', '5/2', etc.
+    parity : str {'-', '+', ''}
+        Excited level parity.
+    level_linewidth: float
+        Level linewidth on the plot, default value is 0.5
+    color : str {'black', 'red', 'green', etc.} or RGB code
+        Level line color. Default value is 'black'.
+    linestyle : str {'solid', 'dashed'}
+        Level linestyle.
+    lifetime : float
+        Level lifetime.
+
+
+    Methods
+    -------
+    highlight(linewidth=4, color='red')
+        Changes instance's linewidth and color attributes.
+
+    """
+
+    def __init__(self, energy, spinValue=None, parity=None, lifetime=None):
+        """The __init__ method creates Level object and sets up instance's attributes values
+        with given parameter values.
+
+        """
+
+
+        self.energy = energy
+        self.spinValue = spinValue
+        self.parity = parity
+        self.level_linewidth = 0.5
+        self.color = 'black' #RGB codes
+        self.linestyle = 'solid'
+        self.lifetime = lifetime
+
+        #todo: get rid of highlit method or write one for transitions
+        self.highlighted = False
+
+
+    def highlight(self, linewidth=4, color='red'):
+        self.color= color
+        self.highlight_linewidth = linewidth
+        self.highlighted = True
+
+
+    def _linestyle(self):
+        if self.linestyle=='dashed':
+            return (1, (5, 10))
+
+    def __str__(self):
+        return 'Level object (energy = {} \t spinValue = {} \t parity = {} \t lifetime = {})'.format(self.energy, self.spinValue, self.parity, self.lifetime)
+
+
+
+class Transition():
+    """This is class for transitions of the nuclear states with emission of a gamma ray. The class instance contains all
+     information about transition itself and its plotting style.
+
+    Parameters
+    ----------
+    gammaEnergy : float
+        Excited level energy.
+    from_lvl : float
+        Energy of the state in which the nuclei was **before** gamma transition.
+    to_lvl : float
+        Energy of the state in which the nuclei was **after** gamma transition.
+    gammaEnergy_err : float
+        Excited level energy error value (default value is None).
+
+    intensity : float
+        Intensity of the transition (default value is None).
+    intensity_err : float
+        Energy of the level in which the nuclei was before gamma transition (default value is None).
+
+
+    Attributes
+    ----------
+    gammaEnergy : float
+    from_lvl : float
+    to_lvl : float
+    gammaEnergy_err : float
+    intensity : float
+    instensity_err : float
+
+    transition_linewidth: float
+        Transition linewidth on the plot, default value is 0.001. Be careful, there is different scale of width in use, in comparison to class Level.
+    color : str {'black', 'red', 'green', etc.} or RGB code
+        Level line color. Default value is 'black'.
+    linestyle : str {'solid', 'dashed'}
+        Level linestyle.
+    lifetime : float
+
+
+    """
+
+    def __init__(self, gammaEnergy, from_lvl, to_lvl, gammaEnergy_err=None, intensity=None, instensity_err=None):
+        """The __init__ method creates Transition object and sets up instance's attributes values
+        with given parameter values.
+
+        """
+        self.gammaEnergy = gammaEnergy
+        self.from_lvl = from_lvl
+        self.to_lvl = to_lvl
+        self.gammaEnergy_err = gammaEnergy_err
+        self.intensity = intensity
+        self.intensity_err = instensity_err
+
+        self.transition_linewidth = 0.001
+        self.color = 'black'
+        self.linestyle='solid'
+
+    def _linestyle(self):
+        if self.linestyle=='dashed':
+            return (1, (5, 10))
+
+
+    def transitionDescription(self):
+
+        transitionDescription = ''
+        if self.gammaEnergy:
+            transitionDescription += '{}'.format(self.gammaEnergy)
+            if self.gammaEnergy_err:
+                transitionDescription += '({})'.format(self.gammaEnergy_err)
+        if self.intensity:
+            transitionDescription += '   {}'.format(self.intensity)
+            if self.intensity_err:
+                transitionDescription += '({})'.format(self.intensity_err)
+
+        return transitionDescription
+
+
+    def __str__(self):
+        string = 'Transition object (gamma energy = {} \t from level = {} \t to level = {})'.format(self.gammaEnergy, self.from_lvl, self.to_lvl)
+
+        return string
+
+
+
+class Database_csv():
+    """
+    Create database from csv file.
+
+    Parameters
+    ----------
+    lvlFileName : str
+        File which contains lvls description.
+
+    transitionsFileName : str
+        File which contains transitions description.
+
+    Attributes
+    ----------
+    levels : pandas.DataFrame
+        Contains levels information.
+
+    transitions : pandas.DataFrame
+        Contains transitions information.
+
+    Methods
+    -------
+    levelsPackage()
+        returns dictionary of Level objects with keys equal to energy {'energy' : Level_object }
+
+    transitionsPackage()
+        returns dictionary of Transition objects with keys equal to energy {'energy' : Transition_object }
+    """
+
+    def __init__(self, lvlFileName, transitionsFileName):
+        self.levels = pd.read_csv(lvlFileName, header=0, sep='\s+')
+        self.transitions = pd.read_csv(transitionsFileName, header=0, sep='\s+', keep_default_na=False)
+
+    def slice(self, gamma_start_lvl, gamma_end_lvl):
+        Database_xlsx_slice = self.transitions.loc[
+            (self.transitions['from_lvl'] <= gamma_end_lvl) | (self.transitions['to_lvl'] >= gamma_start_lvl)]
+        return Database_xlsx_slice
+
+
+    def levelsPackage(self):
+        levels_dictionary = OrderedDict()
+        for index, row in self.levels.iterrows():
+            levels_dictionary[str(row.lvl_energy)] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
+        return levels_dictionary
+
+
+    def transitionsPackage(self):
+        transitions_dictionary = OrderedDict()
+        for index, row in self.transitions.iterrows():
+            transitions_dictionary[str(row.g_energy)] = Transition(gammaEnergy=row.g_energy, from_lvl=row.from_lvl, to_lvl=row.to_lvl,\
+                                                        intensity=row.I, instensity_err=row.dI, gammaEnergy_err=row.g_energy_err)
+        return transitions_dictionary
+
+
+
+
+
+class Database_xlsx(Database_csv):
+    """
+    Create database from xlsx file. This classs inherited methods from Database_csv class.
+
+    Parameters
+    ----------
+    databaseFileName : str
+        File which contains lvls description.
+
+
+    Attributes
+    ----------
+    levels : pandas.DataFrame
+        Contains levels information.
+
+    transitions : pandas.DataFrame
+        Contains transitions information.
+
+    """
+    def __init__(self, databaseFileName):
+        self.levels = pd.read_excel(databaseFileName, sheet_name='levels', keep_default_na=False, skip_blank_lines=True)
+        self.transitions = pd.read_excel(databaseFileName, sheet_name='transitions', keep_default_na=False, skip_blank_lines=True)
+
+
+
+
+if __name__ == '__main__':
+    Database_xlsx=Database_xlsx(databaseFileName='DATABASE.xlsx')
+    print(Database_xlsx.levels)
+    print(Database_xlsx.transitionsPackage().keys())

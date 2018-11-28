@@ -1,103 +1,53 @@
-from database_reader import Database
-from collections import OrderedDict
+from database_reader import *
 import matplotlib.pyplot as plt
-
-class Level():
-    def __init__(self, energy, spinValue=None, parity=None, lifetime=None):
-        self.energy = energy
-        self.spinValue = spinValue
-        self.parity = parity
-        self.level_linewidth = 0.5
-        self.color = 'black' #RGB codes
-        self.linestyle = 'solid'
-        self.lifetime = lifetime
-
-        self.highlighted = False
-
-
-    def highlight(self, linewidth=4, color='red'):
-        self.color= color
-        self.highlight_linewidth = linewidth
-        self.highlighted = True
-
-
-    def _linestyle(self):
-        if self.linestyle=='dashed':
-            return (1, (5, 10))
-
-    def __str__(self):
-        return 'Level object (energy = {} \t spinValue = {} \t parity = {} \t lifetime = {})'.format(self.energy, self.spinValue, self.parity, self.lifetime)
-
-
-
-class Transition():
-
-    def __init__(self, gammaEnergy, from_lvl, to_lvl, gammaEnergy_err=None, intensity=None, instensity_err=None):
-        self.gammaEnergy = gammaEnergy
-        self.from_lvl = from_lvl
-        self.to_lvl = to_lvl
-        self.gammaEnergy_err = gammaEnergy_err
-        self.intensity = intensity
-        self.intensity_err = instensity_err
-
-        self.transition_linewidth = 0.001
-        self.color = 'black'
-        self.linestyle='solid'
-
-    def _linestyle(self):
-        if self.linestyle=='dashed':
-            return (1, (5, 10))
-
-
-    def transitionDescription(self):
-
-        transitionDescription = ''
-        if self.gammaEnergy:
-            transitionDescription += '{}'.format(self.gammaEnergy)
-            if self.gammaEnergy_err:
-                transitionDescription += '({})'.format(self.gammaEnergy_err)
-        if self.intensity:
-            transitionDescription += '   {}'.format(self.intensity)
-            if self.intensity_err:
-                transitionDescription += '({})'.format(self.intensity_err)
-
-        return transitionDescription
-
-
-    def __str__(self):
-        string = 'Transition object (gamma energy = {} \t from level = {} \t to level = {})'.format(self.gammaEnergy, self.from_lvl, self.to_lvl)
-
-        return string
-
-############################################################################################################################################################
-############################################################################################################################################################
-
-
-
-def levelsPackage(database):
-    # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
-    # creating a dictionary {"energy value string" : Level object}
-    levels_dictionary = OrderedDict()
-    for index, row in database.levels.iterrows():
-        levels_dictionary[str(row.lvl_energy)] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
-    return levels_dictionary
-
-
-def transitionsPackage(database):
-    # TODO: maybe its better to omitt this step with dict (???) lets see what will be more useful
-    # creating a dictionary {"energy value string" : Transition object}
-    transitions_dictionary = OrderedDict()
-    for index, row in database.transitions.iterrows():
-        transitions_dictionary[str(row.g_energy)] = Transition(gammaEnergy=row.g_energy, from_lvl=row.from_lvl, to_lvl=row.to_lvl,\
-                                                    intensity=row.I, instensity_err=row.dI, gammaEnergy_err=row.g_energy_err)
-    return transitions_dictionary
-
-
-############################################################################################################################################################
-############################################################################################################################################################
 
 
 class Scheme():
+    """
+    Creates scheme object with various methods for plotting gamma transitions scheme of the excited nuclei.
+
+    ...
+
+    Attributes
+    ----------
+    figureWidth : float
+        Class attribute. Output scheme window/canvas width.
+
+    figureLength : float
+        Class attribute. Output scheme window/canvas length.
+
+    dpi : int
+        Class attribute. Output scheme window/canvas dpi factor.
+
+    fontSize : int
+        Class attribute. Level labels font size.
+
+    transition_fontSize : int
+        Class attribute. Transitions labels font size.
+
+    spinAnnotationWidthFactor : float
+        Class attribute. Part of scheme plot width which will be taken by left sided annotation (spin and parity part).
+
+
+    energyAnnotationWidthFactor : float
+        Class attribute. Part of scheme plot width which will be taken by right sided annotation (level energy).
+
+    spinAnnotationSlopeFactor : float
+        Class attribute. Part of scheme plot width which will be taken for slope **on the left side**, when annotation and level line splitting
+        is needed (this is needed when bunch of levels is closer to each other than annotation height.
+
+    energyAnnotationSlopeFactor : float
+        Class attribute. Part of scheme plot width which will be taken for slope **on the right side**, when annotation and level line splitting
+        is needed (this is needed when bunch of levels is closer to each other than annotation height.
+
+    transtitionsSpacingFactor : float
+        Class attribute. Part of scheme plot width which will be taken as gap between transition arrows.
+    """
+
+
+
+
+
     # These attributes must be Class-Attributes, because when we create many instances of Scheme class,
     # we want them to be identically set up. For example: if we split our decay scheme for many pages
     # we create separated instances of Scheme class for each page. If we decide to change font size
@@ -106,7 +56,7 @@ class Scheme():
 
     # publics:
     figureWidth = 20
-    scalingHeightFactor = 0.6 # 0.7 for A4
+    figureLength = 12 # 12 for A4
     dpi = 75
 
     # bug! zmiana tych wartosci wszystko psuje
@@ -127,7 +77,7 @@ class Scheme():
     transtitionsSpacingFactor = 0.021
 
 
-    # private Class instances:
+    # private Class attributes:
     _number_of_schemes = 0
 
 
@@ -146,16 +96,14 @@ class Scheme():
         self._spinAnnotationStartingPoint = 0
 
         self._lastAnnotationPointHeight = 0
-        self._annotationBoxHeight = 200  # TODO: this might be scalled automatically with font size
+        self._annotationBoxHeight = 200
 
         self.__setPlotGeometry()
         self.__prepareCanvas()
 
-        #updating Class Atribute:
+        #updating Class Attribute:
         #counting number of Scheme instances
         Scheme._number_of_schemes += 1
-
-    #TODO: add 'set' functions for all important atributes
 
     def __setPlotGeometry(self):
 
@@ -186,10 +134,17 @@ class Scheme():
 
 
     def enableLatex(self):
+        """
+        Enables LaTeX rendering for all strings in the scheme plot.
+        (!) This function has to be called **before**
+        Scheme_object.addLevel(), Scheme_object.addLevelsPackage() methods (and analogously for add-transitions).
+        """
         plt.rcParams.update({"text.usetex" : True})
+        plt.rcParams["text.latex.preamble"].append(r'\usepackage[dvips]{graphicx}\usepackage{xfrac}')
+
 
     def __prepareCanvas(self):
-        fig, ax = plt.subplots(figsize=(self.figureWidth, self.scalingHeightFactor * self.figureWidth), dpi=self.dpi)
+        fig, ax = plt.subplots(figsize=(self.figureWidth, self.figureLength), dpi=self.dpi)
         plt.subplots_adjust(left=0.01, right=0.99)
 
         plt.rcParams.update({'font.size': self.fontSize}) # setting up font for all labels
@@ -201,6 +156,11 @@ class Scheme():
 
 
     def addLevel(self, Level_object):
+        """
+        Plots level on the scheme.
+
+        :param: Level_object
+        """
 
         #### TODO: this part can be improved
         self.annotationLvl = Level_object.energy
@@ -248,16 +208,21 @@ class Scheme():
 
 
     def addTransition(self, Transition_object):
+        """
+        Plots transition on the scheme.
+
+        :param: Transition_object
+        """
         arrowHeadWidth = 0.005*self._levelLineWidth_value
         arrowHeadLength =  0.01*self._levelLineWidth_value
 
         plt.arrow(x=self._nextArrowPoint , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
                   head_width=arrowHeadWidth, head_length=arrowHeadLength,
-                    length_includes_head=True, facecolor=Transition_object.color, color=Transition_object.color,\
+                    length_includes_head=True, facecolor=Transition_object.color, edgecolor=Transition_object.color,\
                     width=Transition_object.transition_linewidth, alpha=1, linestyle=Transition_object._linestyle())
 
 
-        box = dict(boxstyle='square', facecolor='white', color='white', alpha=1, pad=0) #udalo sie zmienic rozmiar white box za pomoca parametru pad
+        box = dict(boxstyle='square', facecolor='white', edgecolor='white', alpha=1, pad=0) #udalo sie zmienic rozmiar white box za pomoca parametru pad
         plt.text(x=self._nextArrowPoint, y=Transition_object.from_lvl+self.schemeHeight*0.002, s=Transition_object.transitionDescription(),\
                  fontsize = self.transition_fontSize, rotation=60, horizontalalignment='left', verticalalignment='bottom',\
                  bbox=box)
@@ -267,18 +232,52 @@ class Scheme():
 
 
     def addLevelsPackage(self, levelsPackage):
+        """
+        Plots all levels from the levels package (see more about levelsPackage).
+
+        :param: levelsPackage
+        """
         for key in levelsPackage.keys():
             self.addLevel(levelsPackage[key])
 
     def addTransitionsPackage(self, transitionsPackage):
+        """
+        Plots all transition from the transitions package (see more about transitionsPackage).
+
+        :param: transitionsPackage
+        """
+
         # -1 means reversed sorting
         for key in [t[0] for t in sorted(transitionsPackage.items(), key=lambda x: (x[1].from_lvl, -1 * x[1].to_lvl))]:
             self.addTransition(transitionsPackage[key])
 
     def addNucleiName(self, nucleiName=r'$^{63}$Ni'):
+        """
+        Adds nuclei name to the decay scheme.
+
+        :param: nucleiName : *str* (best option is to use LaTeX typing method. Example: nucleiName=r'$^{63}$Ni')
+        """
         plt.text(0.48, 0.05, nucleiName, fontsize=48, transform=plt.gcf().transFigure)
 
     def save(self, fileName=None):
+        """
+        Saves plot to the file.
+        :param: fileName: filename. It is recommended to use .svg extension, for example fileName='my_scheme.svg'. It is
+        also allowed to **not pass** any file name (especially if there will be more than one Scheme_object plots saved
+        during code operation. The Scheme class will enumerate all of it's instances, and later save them to different
+        files. Example: ::
+
+        >>> s1 = Scheme()
+        >>> s2 = Scheme()
+        >>> s3 = Scheme()
+        >>> ...
+        >>> s1.save()
+        >>> s2.save()
+        >>> s3.save()
+        In the result three files will be created: ``scheme_part_1.svg``, ``scheme_part_2.svg`` and ``scheme_part_3.svg``.
+        It is useful when scheme splitting for many pages is needed.
+
+        """
         if fileName:
             pass
         else:
@@ -288,6 +287,9 @@ class Scheme():
         plt.savefig(fileName)
 
     def show(self):
+        """
+        Shows resulting scheme.
+        """
         plt.show()
 
 
@@ -296,38 +298,51 @@ if __name__ == '__main__':
 
     scheme = Scheme()
 
+    ##reading database from xlsx file (it's also possible to read csv)
+    dataBase = Database_xlsx('./data/DATABASE.xlsx')
 
-    levels = levelsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
-    transitions = transitionsPackage(database=Database(lvlFileName='DATABASE_LVLS', transitionsFileName='DATABASE_TRANS'))
+    ## reading dictionaries of Level objects, and Transitions objects
+    levels = dataBase.levelsPackage()
+    transitions = dataBase.transitionsPackage()
 
 
-
+    ## setting up levels lines color, style, width, etc.
     levels['2696.3'].highlight(linewidth=2, color='red')
-    levels['1324.01'].linestyle='dashed'
+    levels['1324.01'].linestyle = 'dashed'
 
-
+    ## setting up transitions lines color, style, width, etc.
     transitions['5514.64'].linestyle = 'dashed'
 
     transitions['4142.5'].color = 'red'
     transitions['4142.5'].transition_linewidth = 5
+
     transitions['1371.3'].color = 'purple'
-    transitions['2178.18'].color ='blue'
-    transitions['2540.9'].color ='green'
+
+    transitions['2178.18'].color = 'blue'
+
+    transitions['2540.9'].color = 'green'
+
     transitions['2696.8'].color = 'red'
 
 
-    print(levels['4055.0'])
-    print(transitions['86.8'])
+    ##It is possible to print Level or Transition object (it will show its the most important properties)
+    # print(levels['4055.0'])
+    # print(transitions['86.8'])
 
+    ## It is possible to render scheme with labels written in LaTeX
+    # scheme.enableLatex()
 
-    #scheme.enableLatex()
-
+    ## Plotting all levels and transitions in packages
     scheme.addLevelsPackage(levelsPackage = levels)
     scheme.addTransitionsPackage(transitionsPackage = transitions)
 
 
+    ## Plotting nuclei name
     scheme.addNucleiName(r'$^{63}$Ni')
 
 
+    ## Showing plot
     scheme.show()
 
+    ## Saving to the file
+    scheme.save('example.svg')

@@ -1,6 +1,6 @@
 # !/usr/bin/python3.5
-import pandas as pd
-from collections import OrderedDict
+# import pandas as pd
+# from collections import OrderedDict
 
 
 class Level():
@@ -140,7 +140,12 @@ class Transition():
 
 
     def transitionDescription(self):
+        """
+        Returns transition description as a string.
 
+        :return: str 'E (dE)  I (dI)'
+
+        """
         transitionDescription = ''
         if self.gammaEnergy:
             transitionDescription += '{}'.format(self.gammaEnergy)
@@ -181,13 +186,6 @@ class Database_csv():
     transitions : pandas.DataFrame
         Contains transitions information.
 
-    Methods
-    -------
-    levelsPackage()
-        returns dictionary of Level objects with keys equal to energy {'energy' : Level_object }
-
-    transitionsPackage()
-        returns dictionary of Transition objects with keys equal to energy {'energy' : Transition_object }
     """
 
     def __init__(self, lvlFileName, transitionsFileName):
@@ -195,12 +193,19 @@ class Database_csv():
         self.transitions = pd.read_csv(transitionsFileName, header=0, sep='\s+', keep_default_na=False)
 
     def slice(self, gamma_start_lvl, gamma_end_lvl):
+        # has to be tested!
         Database_xlsx_slice = self.transitions.loc[
             (self.transitions['from_lvl'] <= gamma_end_lvl) | (self.transitions['to_lvl'] >= gamma_start_lvl)]
         return Database_xlsx_slice
 
 
     def levelsPackage(self):
+        """
+        Creates dictionary of Level_objects
+
+        :return: dictionary of Level_objects with keys equal to energy {'energy' : Level_object }
+        """
+
         levels_dictionary = OrderedDict()
         for index, row in self.levels.iterrows():
             levels_dictionary[str(row.lvl_energy)] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
@@ -208,6 +213,13 @@ class Database_csv():
 
 
     def transitionsPackage(self):
+        """
+        Creates dictionary of Transition_objects
+
+        :return: dictionary of Transition objects with keys equal to the transition's energy {'energy' : Transition_object }
+        """
+        
+        
         transitions_dictionary = OrderedDict()
         for index, row in self.transitions.iterrows():
             transitions_dictionary[str(row.g_energy)] = Transition(gammaEnergy=row.g_energy, from_lvl=row.from_lvl, to_lvl=row.to_lvl,\

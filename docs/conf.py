@@ -21,7 +21,7 @@ import os
 import sys
 
 
-sys.path.insert(0, "/home/ewa_adamska/PycharmProjects/nice_scheme_plotter/nice_scheme_plotter")
+sys.path.insert(0, "/home/ewa_adamska/PycharmProjects/nice_scheme_plotter/nice_scheme_plotter/")
 
 
 

@@ -169,17 +169,31 @@ about level itself and its plotting style.</p>
 </tbody>
 </table>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col width="71%" />
-<col width="29%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><strong>transitionDescription</strong></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><a class="reference internal" href="#database_reader.Transition.transitionDescription" title="database_reader.Transition.transitionDescription"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transitionDescription</span></code></a>()</td>
+<td>Returns transition description as a string.</td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="database_reader.Transition.transitionDescription">
+<code class="descname">transitionDescription</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_reader.Transition.transitionDescription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns transition description as a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">str ‘E (dE)  I (dI)’</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -213,20 +227,59 @@ about level itself and its plotting style.</p>
 </tbody>
 </table>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col width="20%" />
-<col width="80%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><strong>levelsPackage()</strong></td>
-<td>returns dictionary of Level objects with keys equal to energy {‘energy’ : Level_object }</td>
+<tr class="row-odd"><td><a class="reference internal" href="#database_reader.Database_csv.levelsPackage" title="database_reader.Database_csv.levelsPackage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">levelsPackage</span></code></a>()</td>
+<td>Creates dictionary of Level_objects</td>
 </tr>
-<tr class="row-even"><td><strong>transitionsPackage()</strong></td>
-<td>returns dictionary of Transition objects with keys equal to energy {‘energy’ : Transition_object }</td>
+<tr class="row-even"><td><a class="reference internal" href="#database_reader.Database_csv.transitionsPackage" title="database_reader.Database_csv.transitionsPackage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transitionsPackage</span></code></a>()</td>
+<td>Creates dictionary of Transition_objects</td>
 </tr>
 </tbody>
 </table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>slice</strong></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="database_reader.Database_csv.levelsPackage">
+<code class="descname">levelsPackage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_reader.Database_csv.levelsPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates dictionary of Level_objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dictionary of Level_objects with keys equal to energy {‘energy’ : Level_object }</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="database_reader.Database_csv.transitionsPackage">
+<code class="descname">transitionsPackage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_reader.Database_csv.transitionsPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates dictionary of Transition_objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dictionary of Transition objects with keys equal to the transition’s energy {‘energy’ : Transition_object }</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -257,19 +310,27 @@ about level itself and its plotting style.</p>
 </tbody>
 </table>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col width="69%" />
-<col width="31%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><strong>levelsPackage</strong></td>
-<td>&#160;</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">levelsPackage</span></code>()</td>
+<td>Creates dictionary of Level_objects</td>
 </tr>
-<tr class="row-even"><td><strong>slice</strong></td>
-<td>&#160;</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">transitionsPackage</span></code>()</td>
+<td>Creates dictionary of Transition_objects</td>
 </tr>
-<tr class="row-odd"><td><strong>transitionsPackage</strong></td>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>slice</strong></td>
 <td>&#160;</td>
 </tr>
 </tbody>

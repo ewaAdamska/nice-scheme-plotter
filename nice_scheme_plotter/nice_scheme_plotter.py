@@ -1,4 +1,3 @@
-from database_reader import *
 import matplotlib.pyplot as plt
 
 
@@ -6,57 +5,53 @@ class Scheme():
     """
     Creates scheme object with various methods for plotting gamma transitions scheme of the excited nuclei.
 
-    ...
+
+    Note
+    ----
+    These attributes must be Class-Attributes, because when we create many instances of Scheme class,
+    we want them to be identically set up. For example: if we split our decay scheme for many pages
+    we create separated instances of Scheme class for each page. If we decide to change font size
+    or any other scheme's geometry property we want to change it for all Scheme objects.
 
     Attributes
     ----------
     figureWidth : float
-        Class attribute. Output scheme window/canvas width.
+        Class attribute. Output scheme window/canvas width. Default value is 20.
 
-    figureLength : float
-        Class attribute. Output scheme window/canvas length.
+    figureHeight : float
+        Class attribute. Output scheme window/canvas length. Default value is 12.
 
     dpi : int
-        Class attribute. Output scheme window/canvas dpi factor.
+        Class attribute. Output scheme window/canvas dpi factor. Default value is 75.
 
     fontSize : int
-        Class attribute. Level labels font size.
+        Class attribute. Level labels font size. Default value is 14.
 
     transition_fontSize : int
-        Class attribute. Transitions labels font size.
+        Class attribute. Transitions labels font size. Default value is 12.
 
     spinAnnotationWidthFactor : float
-        Class attribute. Part of scheme plot width which will be taken by left sided annotation (spin and parity part).
-
+        Class attribute. Part of scheme plot width which will be taken by left sided annotation (spin and parity part). Default value is 0.04.
 
     energyAnnotationWidthFactor : float
-        Class attribute. Part of scheme plot width which will be taken by right sided annotation (level energy).
+        Class attribute. Part of scheme plot width which will be taken by right sided annotation (level energy). Default value is 0.04.
 
     spinAnnotationSlopeFactor : float
         Class attribute. Part of scheme plot width which will be taken for slope **on the left side**, when annotation and level line splitting
-        is needed (this is needed when bunch of levels is closer to each other than annotation height.
+        is needed (this is needed when bunch of levels is closer to each other than annotation height. Default value is 0.01.
 
     energyAnnotationSlopeFactor : float
         Class attribute. Part of scheme plot width which will be taken for slope **on the right side**, when annotation and level line splitting
-        is needed (this is needed when bunch of levels is closer to each other than annotation height.
+        is needed (this is needed when bunch of levels is closer to each other than annotation height. Default value is 0.01.
 
     transtitionsSpacingFactor : float
-        Class attribute. Part of scheme plot width which will be taken as gap between transition arrows.
+        Class attribute. Part of scheme plot width which will be taken as gap between transition arrows. Default value is 0.021.
+
     """
-
-
-
-
-
-    # These attributes must be Class-Attributes, because when we create many instances of Scheme class,
-    # we want them to be identically set up. For example: if we split our decay scheme for many pages
-    # we create separated instances of Scheme class for each page. If we decide to change font size
-    # or any other scheme's geometry property we want to change it for all Scheme objects.
-
 
     # publics:
     figureWidth = 20
-    figureLength = 12 # 12 for A4
+    figureHeight = 12 # 12 for A4
     dpi = 75
 
     # bug! zmiana tych wartosci wszystko psuje
@@ -144,7 +139,7 @@ class Scheme():
 
 
     def __prepareCanvas(self):
-        fig, ax = plt.subplots(figsize=(self.figureWidth, self.figureLength), dpi=self.dpi)
+        fig, ax = plt.subplots(figsize=(self.figureWidth, self.figureHeight), dpi=self.dpi)
         plt.subplots_adjust(left=0.01, right=0.99)
 
         plt.rcParams.update({'font.size': self.fontSize}) # setting up font for all labels
@@ -295,6 +290,7 @@ class Scheme():
 
 
 if __name__ == '__main__':
+    from database_reader import *
 
     scheme = Scheme()
 
@@ -316,9 +312,6 @@ if __name__ == '__main__':
     transitions['4142.5'].color = 'red'
     transitions['4142.5'].transition_linewidth = 5
 
-    transitions['1371.3'].color = 'purple'
-
-    transitions['2178.18'].color = 'blue'
 
     transitions['2540.9'].color = 'green'
 
@@ -330,7 +323,7 @@ if __name__ == '__main__':
     # print(transitions['86.8'])
 
     ## It is possible to render scheme with labels written in LaTeX
-    # scheme.enableLatex()
+    scheme.enableLatex()
 
     ## Plotting all levels and transitions in packages
     scheme.addLevelsPackage(levelsPackage = levels)

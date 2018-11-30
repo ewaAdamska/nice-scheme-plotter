@@ -202,11 +202,22 @@ class PackageDict(OrderedDict):
 
     :return: list of two PackageDict_objects
     """
-    #TODO:
-    def split(self, from_key):
-        print(self[str(from_key)])
 
-        print('Package splitted into {} new ones'.format(2))
+    def slice(self, from_key, to_key):
+        """
+
+        :param from_key: str key from which we start slicing  PackageDict_object
+        :param to_key:  str gamma transition energy to which we slice PackageDict_object
+        :return: sliced PackageDict_object
+        """
+
+        newDict = PackageDict()
+
+        for key in self.keys():
+            if float(key) >= float(from_key) and float(key) <= float(to_key):
+                newDict[key] = self[key]
+        return newDict
+
 
 
 
@@ -306,4 +317,5 @@ if __name__ == '__main__':
     Database_xlsx=Database_xlsx(databaseFileName='./data/DATABASE.xlsx')
     print(Database_xlsx.levels)
     package = Database_xlsx.transitionsPackage()
-    package.split(from_key='155.5')
+    newPackage = package.split(from_key='155.5', to_key='1001.4')
+    print(newPackage.keys())

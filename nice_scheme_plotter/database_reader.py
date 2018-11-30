@@ -21,6 +21,9 @@ class Level():
     lifetime : float
         Excited level lifetime.
 
+    lifetime_units : str
+        Lifetime units.
+
     Attributes
     ----------
     energy : float
@@ -51,7 +54,7 @@ class Level():
 
     """
 
-    def __init__(self, energy, spinValue=None, parity=None, lifetime=None):
+    def __init__(self, energy, spinValue=None, parity=None, lifetime=None, lifetime_units=None):
         """The __init__ method creates Level object and sets up instance's attributes values
         with given parameter values.
 
@@ -65,6 +68,7 @@ class Level():
         self.color = 'black' #RGB codes
         self.linestyle = 'solid'
         self.lifetime = lifetime
+        self.lifetime_units = lifetime_units
 
         #todo: get rid of highlit method or write one for transitions
         self.highlighted = False
@@ -109,6 +113,8 @@ class Transition():
     intensity_err : float
         Energy of the level in which the nuclei was before gamma transition (default value is None).
 
+    multipolarity : str
+        Multipolarity of the gamma ray
 
     Attributes
     ----------
@@ -138,7 +144,7 @@ class Transition():
 
     """
 
-    def __init__(self, gammaEnergy, from_lvl, to_lvl, gammaEnergy_err=None, intensity=None, instensity_err=None):
+    def __init__(self, gammaEnergy, from_lvl, to_lvl, gammaEnergy_err=None, intensity=None, instensity_err=None, multipolarity=None):
         """The __init__ method creates Transition object and sets up instance's attributes values
         with given parameter values.
 
@@ -149,6 +155,7 @@ class Transition():
         self.gammaEnergy_err = gammaEnergy_err
         self.intensity = intensity
         self.intensity_err = instensity_err
+        self.multipolarity = multipolarity
 
         self.transition_linewidth = 0.001
         self.color = 'black'
@@ -175,6 +182,8 @@ class Transition():
             transitionDescription += '   {}'.format(self.intensity)
             if self.intensity_err:
                 transitionDescription += '({})'.format(self.intensity_err)
+        if self.multipolarity:
+                transitionDescription += self.multipolarity
 
         return transitionDescription
 
@@ -183,6 +192,21 @@ class Transition():
         string = 'Transition object (gamma energy = {} \t from level = {} \t to level = {})'.format(self.gammaEnergy, self.from_lvl, self.to_lvl)
 
         return string
+
+
+
+class PackageDict(OrderedDict):
+    """
+    Creates collections.OrderedDict object with an additional function of splitting dictionaries, and changing
+    simultaneously attributes values of all objects placed in the dictionary.
+
+    :return: list of two PackageDict_objects
+    """
+    #TODO:
+    def split(self, from_key):
+        print(self[str(from_key)])
+
+        print('Package splitted into {} new ones'.format(2))
 
 
 
@@ -218,33 +242,35 @@ class Database_csv():
             (self.transitions['from_lvl'] <= gamma_end_lvl) | (self.transitions['to_lvl'] >= gamma_start_lvl)]
         return Database_xlsx_slice
 
-
     def levelsPackage(self):
         """
         Creates dictionary of Level_objects
 
-        :return: dictionary of Level_objects with keys equal to energy {'energy' : Level_object }
+        :return: ordered dictionary of Level_objects with keys equal to energy {'energy' : Level_object }
         """
 
-        levels_dictionary = OrderedDict()
+        levels_dictionary = PackageDict()
         for index, row in self.levels.iterrows():
             levels_dictionary[str(row.lvl_energy)] = Level(energy=row.lvl_energy, spinValue=row.spin, parity=row.parity)
         return levels_dictionary
-
 
     def transitionsPackage(self):
         """
         Creates dictionary of Transition_objects
 
-        :return: dictionary of Transition objects with keys equal to the transition's energy {'energy' : Transition_object }
+        :return: ordered dictionary of Transition objects with keys equal to the transition's energy {'energy' : Transition_object }
         """
         
         
-        transitions_dictionary = OrderedDict()
+        transitions_dictionary = PackageDict()
         for index, row in self.transitions.iterrows():
             transitions_dictionary[str(row.g_energy)] = Transition(gammaEnergy=row.g_energy, from_lvl=row.from_lvl, to_lvl=row.to_lvl,\
                                                         intensity=row.I, instensity_err=row.dI, gammaEnergy_err=row.g_energy_err)
         return transitions_dictionary
+
+
+
+
 
 
 
@@ -279,4 +305,5 @@ class Database_xlsx(Database_csv):
 if __name__ == '__main__':
     Database_xlsx=Database_xlsx(databaseFileName='./data/DATABASE.xlsx')
     print(Database_xlsx.levels)
-    print(Database_xlsx.transitionsPackage().keys())
+    package = Database_xlsx.transitionsPackage()
+    package.split(from_key='155.5')

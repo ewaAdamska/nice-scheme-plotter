@@ -171,7 +171,7 @@ class Scheme():
 
         def addLevelLine(energy):
             if Level_object.highlighted == False:
-                plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-', lw=Level_object.level_linewidth, color=Level_object.color, linestyle=Level_object._linestyle())
+                plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-', lw=Level_object.level_linewidth, color=Level_object.color, linestyle=Level_object.getLineStyle())
             else:
                 plt.plot([self._levelLineStartingPoint, self._levelLineEndingPoint], [energy, energy], 'k-',
                          lw=Level_object.highlight_linewidth, color=Level_object.color)
@@ -214,7 +214,7 @@ class Scheme():
         plt.arrow(x=self._nextArrowPoint , y=Transition_object.from_lvl, dx=0, dy=-1*Transition_object.gammaEnergy,\
                   head_width=arrowHeadWidth, head_length=arrowHeadLength,
                     length_includes_head=True, facecolor=Transition_object.color, edgecolor=Transition_object.color,\
-                    width=Transition_object.transition_linewidth, alpha=1, linestyle=Transition_object._linestyle())
+                    width=Transition_object.transition_linewidth, alpha=1, linestyle=Transition_object.getLineStyle())
 
 
         box = dict(boxstyle='square', facecolor='white', edgecolor='white', alpha=1, pad=0) #udalo sie zmienic rozmiar white box za pomoca parametru pad
@@ -336,6 +336,3 @@ if __name__ == '__main__':
 
     ## Showing plot
     scheme.show()
-
-    ## Saving to the file
-    scheme.save('example.svg')

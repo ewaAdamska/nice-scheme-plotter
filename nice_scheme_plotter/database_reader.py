@@ -1,6 +1,6 @@
 # !/usr/bin/python3.5
-# import pandas as pd
-# from collections import OrderedDict
+import pandas as pd
+from collections import OrderedDict
 
 
 class Level():
@@ -76,7 +76,7 @@ class Level():
         self.highlighted = True
 
 
-    def _linestyle(self):
+    def getLineStyle(self):
         if self.linestyle=='dashed':
             return (1, (5, 10))
 
@@ -154,7 +154,7 @@ class Transition():
         self.color = 'black'
         self.linestyle='solid'
 
-    def _linestyle(self):
+    def getLineStyle(self):
         if self.linestyle=='dashed':
             return (1, (5, 10))
 

@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8eab6c65-3442-4b7a-8a83-e6066fff3e18" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/scheme_plot_example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/DATABASE.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/DATABASE.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/nice_scheme_plotter.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/nice_scheme_plotter.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/nice_scheme_plotter.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/nice_scheme_plotter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.svg" beforeDir="false" afterPath="$PROJECT_DIR$/example.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice_scheme_plotter/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/nice_scheme_plotter/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nice_scheme_plotter/database_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/nice_scheme_plotter/database_reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py" beforeDir="false" afterPath="$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py" afterDir="false" />
     </list>
@@ -25,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/database_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+            <state relative-caret-position="1334">
+              <caret line="156" column="20" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
               <folding>
                 <element signature="e#22#41#0" expanded="true" />
               </folding>
@@ -40,8 +29,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="33" column="142" selection-start-line="33" selection-start-column="142" selection-end-line="33" selection-end-column="142" />
+            <state relative-caret-position="255">
+              <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="5" selection-start-column="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -49,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scheme_plot_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+            <state relative-caret-position="390">
+              <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -87,7 +85,6 @@
       <find>print</find>
       <find>prin</find>
       <find>figureWidth</find>
-      <find>_linestyle</find>
       <find>levelLineWidthFactor</find>
       <find>energyAnnotationSlope</find>
       <find>_nextArrowPoint_x</find>
@@ -100,6 +97,7 @@
       <find>scalingHeightFactor</find>
       <find>trans</find>
       <find>transitionsPa</find>
+      <find>_linestyle</find>
     </findStrings>
     <replaceStrings>
       <replace>_lastAnnotationPointHeight</replace>
@@ -110,6 +108,7 @@
       <replace>energyAnnotationSlopeFactor</replace>
       <replace>nextArrowPoint_x</replace>
       <replace>Database_xlsx</replace>
+      <replace>getLineStyle</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -130,8 +129,9 @@
         <option value="$PROJECT_DIR$/README.rst" />
         <option value="$PROJECT_DIR$/nice_scheme_plotter/__init__.py" />
         <option value="$PROJECT_DIR$/scheme_plot_example.py" />
-        <option value="$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py" />
         <option value="$PROJECT_DIR$/nice_scheme_plotter/database_reader.py" />
+        <option value="$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -154,11 +154,6 @@
             <path>
               <item name="nice_scheme_plotter" type="b2602c69:ProjectViewProjectNode" />
               <item name="nice_scheme_plotter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nice_scheme_plotter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nice_scheme_plotter" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nice_scheme_plotter" type="b2602c69:ProjectViewProjectNode" />
@@ -198,7 +193,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scheme_plotter">
+  <component name="RunManager" selected="Python.scheme_plot_example">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="nice_scheme_plotter" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -284,19 +279,22 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.scheme_plotter" />
+      <item itemvalue="Python.__init__" />
       <item itemvalue="Python.database_reader" />
       <item itemvalue="Python.scheme_plot_example" />
-      <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.scheme_plotter" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.scheme_plot_example" />
         <item itemvalue="Python.scheme_plotter" />
         <item itemvalue="Python.database_reader" />
-        <item itemvalue="Python.scheme_plot_example" />
         <item itemvalue="Python.__init__" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -316,15 +314,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.16174863" />
-      <window_info id="Structure" order="2" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26666668" />
+      <window_info id="Structure" order="2" weight="0.24972677" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32937366" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.34449244" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.34449244" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -385,20 +383,6 @@
     <entry file="file://$PROJECT_DIR$/example.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="29" selection-start-column="29" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheme_plot_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/xlrd/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -406,20 +390,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py">
+    <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="33" column="142" selection-start-line="33" selection-start-column="142" selection-end-line="33" selection-end-column="142" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/database_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+        <state relative-caret-position="1334">
+          <caret line="156" column="20" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
           <folding>
             <element signature="e#22#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheme_plot_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice_scheme_plotter/nice_scheme_plotter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>

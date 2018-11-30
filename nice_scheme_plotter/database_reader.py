@@ -11,10 +11,13 @@ class Level():
     ----------
     energy : float
         Excited level energy.
+
     spinValue : str
         Spin value as a string '1/2', '5/2', etc.
+
     parity : str {'+', '-', ''} or None
         Level parity.
+
     lifetime : float
         Excited level lifetime.
 
@@ -22,19 +25,24 @@ class Level():
     ----------
     energy : float
         Excited level energy
+
     spinValue : str
         Excited level spin, represented by a string. Example: '1/2', '5/2', etc.
+
     parity : str {'-', '+', ''}
         Excited level parity.
+
     level_linewidth: float
         Level linewidth on the plot, default value is 0.5
+
     color : str {'black', 'red', 'green', etc.} or RGB code
         Level line color. Default value is 'black'.
+
     linestyle : str {'solid', 'dashed'}
         Level linestyle.
+
     lifetime : float
         Level lifetime.
-
 
     Methods
     -------
@@ -85,15 +93,19 @@ class Transition():
     ----------
     gammaEnergy : float
         Excited level energy.
+
     from_lvl : float
         Energy of the state in which the nuclei was **before** gamma transition.
+
     to_lvl : float
         Energy of the state in which the nuclei was **after** gamma transition.
+
     gammaEnergy_err : float
         Excited level energy error value (default value is None).
 
     intensity : float
         Intensity of the transition (default value is None).
+
     intensity_err : float
         Energy of the level in which the nuclei was before gamma transition (default value is None).
 
@@ -101,18 +113,26 @@ class Transition():
     Attributes
     ----------
     gammaEnergy : float
+
     from_lvl : float
+
     to_lvl : float
+
     gammaEnergy_err : float
+
     intensity : float
+
     instensity_err : float
 
     transition_linewidth: float
         Transition linewidth on the plot, default value is 0.001. Be careful, there is different scale of width in use, in comparison to class Level.
+
     color : str {'black', 'red', 'green', etc.} or RGB code
         Level line color. Default value is 'black'.
+
     linestyle : str {'solid', 'dashed'}
         Level linestyle.
+
     lifetime : float
 
 
@@ -257,6 +277,6 @@ class Database_xlsx(Database_csv):
 
 
 if __name__ == '__main__':
-    Database_xlsx=Database_xlsx(databaseFileName='DATABASE.xlsx')
+    Database_xlsx=Database_xlsx(databaseFileName='./data/DATABASE.xlsx')
     print(Database_xlsx.levels)
     print(Database_xlsx.transitionsPackage().keys())

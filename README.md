@@ -17,7 +17,8 @@ It is also possible to easily set up some parameters of specific level or transi
 
 It is also possible to render all captions with LaTex. 
 
-![example](./example.svg)
+Plots can be saved as both raster and vector graphics.
+![example](./example.png)
 
 ## Levels and transitions data format
 At this point (release 1.01) program can recognise following levels properties: level energy, spin value, parity, and lifetime; transition energy, energy uncertainity, from which level it starts, and to which level it goes, transtition intensity, it's uncertainity and transition multipolarity.
@@ -33,7 +34,7 @@ At this point (release 1.01) program can recognise following levels properties: 
 
 
 ## Example
-
+Examplary code is shown in [scheme_plot_example.py](scheme_plot_example.py).
 
 
 ## Versioning

@@ -46,8 +46,9 @@ scheme.addTransitionsPackage(transitionsPackage=transitions)
 ## Plotting nuclei name.
 scheme.addNucleiName(r'$^{63}$Ni')
 
-## Showing plot
-scheme.show()
 
 ## Saving to the file.
 scheme.save('example.svg')
+
+## Showing plot
+scheme.show()

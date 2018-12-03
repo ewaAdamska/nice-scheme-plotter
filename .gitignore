@@ -1,2 +1,8 @@
+.rawdoc
 .idea
 .idea_copy
+nice_scheme_plotter/__pycache__
+nice_scheme_plotter/__init__.pyc
+nice_scheme_plotter/database_reader.pyc
+nice_scheme_plotter/nice_scheme_plotter.pyc
+.gitignore

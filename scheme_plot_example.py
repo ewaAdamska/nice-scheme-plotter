@@ -37,7 +37,7 @@ scheme = nice_scheme_plotter.Scheme()
 
 ## It is possible to render scheme with labels written in LaTeX. It is not recommended to use LaTeX rendering
 # for previewing the scheme, because it takes longer time.
-# scheme.enableLatex()
+scheme.enableLatex()
 
 ## Plotting all levels and transitions in previously created packages.
 scheme.addLevelsPackage(levelsPackage=levels)

@@ -1,3 +1,7 @@
 .idea
 .idea_copy
-.docs
+.build_docs
+nice_scheme_plotter/__pycache__
+nice_scheme_plotter/__init__.pyc
+nice_scheme_plotter/database_reader.pyc
+nice_scheme_plotter/nice_scheme_plotter.pyc

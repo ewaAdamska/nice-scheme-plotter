@@ -1,6 +1,6 @@
 .idea
 .idea_copy
-.sphinx_docs/
+.sphinx
 nice_scheme_plotter/__pycache__
 nice_scheme_plotter/__init__.pyc
 nice_scheme_plotter/database_reader.pyc
